@@ -1,1 +1,923 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>《生-成》—— 目录</title>
+    <style>
+        :root {
+            --bg: #faf7f2;
+            --bg-warm: #f5efe6;
+            --text-primary: #2c2416;
+            --text-secondary: #5c4f3a;
+            --text-tertiary: #7a6d5a;
+            --text-muted: #9b8d7a;
+            --accent: #8b6914;
+            --accent-light: #b8943a;
+            --accent-pale: #d4c5a0;
+            --vol1-tag: #6b4c2a;
+            --vol1-bg: #fdf9f3;
+            --vol1-border: #d4c0a0;
+            --vol2-tag: #3a5568;
+            --vol2-bg: #f7f9fb;
+            --vol2-border: #a0b8cc;
+            --divider: #e5dfd5;
+            --divider-strong: #d0c8b8;
+            --card-shadow: 0 1px 3px rgba(0, 0, 0, 0.06), 0 1px 2px rgba(0, 0, 0, 0.04);
+            --card-shadow-lg: 0 4px 16px rgba(0, 0, 0, 0.07), 0 2px 6px rgba(0, 0, 0, 0.04);
+            --radius-sm: 4px;
+            --radius-md: 8px;
+            --radius-lg: 12px;
+            --font-serif: "Noto Serif SC", "STSong", "Songti SC", "SimSun", "KaiTi", "STKaiti", "楷体", "华文楷体", "Georgia", "Times New Roman", serif;
+            --font-sans: "Noto Sans SC", "PingFang SC", "Microsoft YaHei", "Hiragino Sans GB", "STHeiti", "黑体", "Helvetica Neue", "Arial", sans-serif;
+            --transition: 0.2s ease;
+            --transition-slow: 0.35s ease;
+        }
 
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            font-size: 16px;
+        }
+
+        body {
+            background-color: #f0ece5;
+            background-image:
+                radial-gradient(ellipse at 20% 10%, rgba(180, 150, 100, 0.06) 0%, transparent 55%),
+                radial-gradient(ellipse at 80% 90%, rgba(140, 160, 180, 0.05) 0%, transparent 55%),
+                radial-gradient(ellipse at 50% 50%, rgba(200, 180, 150, 0.04) 0%, transparent 70%);
+            font-family: var(--font-sans);
+            color: var(--text-primary);
+            line-height: 1.7;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            padding: 2rem 1rem 4rem;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        /* 主容器 —— 模拟书页 */
+        .book-page {
+            background: var(--bg);
+            max-width: 820px;
+            width: 100%;
+            padding: 3.5rem 3rem 3rem;
+            border-radius: var(--radius-lg);
+            box-shadow: var(--card-shadow-lg), 0 0 0 1px rgba(0, 0, 0, 0.04);
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* 书页顶部装饰线 */
+        .book-page::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 3rem;
+            right: 3rem;
+            height: 3px;
+            background: linear-gradient(90deg,
+                    transparent 0%,
+                    var(--accent-pale) 8%,
+                    var(--accent-light) 25%,
+                    var(--accent) 50%,
+                    var(--accent-light) 75%,
+                    var(--accent-pale) 92%,
+                    transparent 100%);
+            border-radius: 0 0 2px 2px;
+        }
+        .book-page::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 3rem;
+            right: 3rem;
+            height: 1px;
+            background: var(--divider);
+            border-radius: 2px 2px 0 0;
+        }
+
+        /* 书名区域 */
+        .title-block {
+            text-align: center;
+            padding: 0.5rem 0 2rem;
+            position: relative;
+        }
+        .book-title-main {
+            font-family: var(--font-serif);
+            font-size: 2.6rem;
+            font-weight: 700;
+            letter-spacing: 0.12em;
+            color: #1a1008;
+            margin: 0 0 0.3rem;
+            line-height: 1.2;
+        }
+        .book-title-main .dash {
+            color: var(--accent);
+            font-weight: 400;
+            letter-spacing: 0;
+            margin: 0 0.08em;
+        }
+        .book-subtitle {
+            font-family: var(--font-serif);
+            font-size: 1rem;
+            letter-spacing: 0.18em;
+            color: var(--text-tertiary);
+            font-weight: 400;
+            margin: 0.2rem 0 0.6rem;
+        }
+        .book-meta-tags {
+            display: flex;
+            justify-content: center;
+            gap: 1.2rem;
+            flex-wrap: wrap;
+            font-size: 0.85rem;
+            letter-spacing: 0.08em;
+            color: var(--text-muted);
+            font-family: var(--font-serif);
+        }
+        .book-meta-tags span {
+            display: inline-block;
+            padding: 0.15em 0.8em;
+            border: 1px solid var(--divider);
+            border-radius: 20px;
+            background: rgba(255, 255, 255, 0.5);
+            transition: all var(--transition);
+        }
+        .book-meta-tags span:hover {
+            border-color: var(--accent-pale);
+            color: var(--accent);
+            background: rgba(255, 255, 255, 0.8);
+        }
+
+        /* 装饰分隔 */
+        .ornament-divider {
+            text-align: center;
+            margin: 0.3rem 0 1.8rem;
+            color: var(--accent-pale);
+            font-size: 0.7rem;
+            letter-spacing: 0.4em;
+            user-select: none;
+            opacity: 0.7;
+        }
+
+        /* 卷标题 */
+        .volume-header {
+            position: relative;
+            margin: 2.5rem 0 1.6rem;
+            padding: 1.2rem 1.6rem;
+            border-radius: var(--radius-md);
+            letter-spacing: 0.1em;
+            font-family: var(--font-serif);
+            transition: all var(--transition-slow);
+        }
+        .volume-header.vol-1 {
+            background: var(--vol1-bg);
+            border-left: 4px solid var(--vol1-border);
+            color: var(--vol1-tag);
+        }
+        .volume-header.vol-2 {
+            background: var(--vol2-bg);
+            border-left: 4px solid var(--vol2-border);
+            color: var(--vol2-tag);
+        }
+        .volume-header .vol-tag {
+            display: inline-block;
+            font-size: 0.75rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            margin-bottom: 0.35rem;
+            font-weight: 600;
+            opacity: 0.75;
+        }
+        .volume-header .vol-title {
+            font-size: 1.35rem;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            line-height: 1.4;
+        }
+        .volume-header .vol-subtitle {
+            font-size: 0.85rem;
+            opacity: 0.7;
+            margin-top: 0.2rem;
+            letter-spacing: 0.06em;
+        }
+
+        /* 前置部分标题 */
+        .front-section-title {
+            font-family: var(--font-serif);
+            font-size: 1.15rem;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            color: #3d3020;
+            margin: 2rem 0 0.8rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px dotted var(--divider);
+        }
+
+        /* 章 */
+        .chapter-block {
+            margin: 1.5rem 0 0.6rem;
+            padding-left: 0;
+            position: relative;
+        }
+        .chapter-title {
+            font-family: var(--font-serif);
+            font-size: 1.1rem;
+            font-weight: 700;
+            letter-spacing: 0.06em;
+            color: #1a1008;
+            margin: 1.5rem 0 0.5rem;
+            padding: 0.4rem 0 0.35rem;
+            border-bottom: 1px solid var(--divider-strong);
+            position: relative;
+            transition: color var(--transition);
+        }
+        .chapter-title:hover {
+            color: var(--accent);
+        }
+        .chapter-number {
+            display: inline-block;
+            font-weight: 700;
+            color: var(--accent);
+            margin-right: 0.4em;
+            font-size: 1.05em;
+            letter-spacing: 0.02em;
+        }
+
+        /* 一级节 (如 1.1, 2.1) */
+        .section-level1 {
+            margin: 0.7rem 0 0.15rem 1.2rem;
+            font-weight: 600;
+            font-size: 0.95rem;
+            color: #3d3020;
+            letter-spacing: 0.04em;
+            position: relative;
+            transition: color var(--transition);
+        }
+        .section-level1:hover {
+            color: var(--accent);
+        }
+        .section-level1 .sec-num {
+            color: var(--accent);
+            font-weight: 700;
+            margin-right: 0.3em;
+            font-size: 0.9em;
+        }
+
+        /* 二级节 (如 1.1.1, 2.1.1) */
+        .section-level2 {
+            margin: 0.35rem 0 0.1rem 2.5rem;
+            font-size: 0.88rem;
+            color: var(--text-secondary);
+            letter-spacing: 0.03em;
+            position: relative;
+            transition: color var(--transition);
+        }
+        .section-level2:hover {
+            color: #4a3820;
+        }
+        .section-level2 .sec-num {
+            color: #7a6030;
+            font-weight: 600;
+            margin-right: 0.3em;
+            font-size: 0.85em;
+        }
+
+        /* 三级节 (如更深层级或中文数字编号的子节) */
+        .section-level3 {
+            margin: 0.2rem 0 0.05rem 3.6rem;
+            font-size: 0.82rem;
+            color: var(--text-tertiary);
+            letter-spacing: 0.02em;
+            line-height: 1.6;
+            transition: color var(--transition);
+        }
+        .section-level3:hover {
+            color: #5c4a30;
+        }
+        .section-level3 .sec-num {
+            color: #8b7355;
+            font-weight: 500;
+            margin-right: 0.25em;
+            font-size: 0.82em;
+        }
+
+        /* 中文数字子节（如一、二、三） */
+        .section-cn {
+            margin: 0.2rem 0 0.05rem 3.6rem;
+            font-size: 0.82rem;
+            color: var(--text-tertiary);
+            letter-spacing: 0.02em;
+            line-height: 1.6;
+            transition: color var(--transition);
+        }
+        .section-cn:hover {
+            color: #5c4a30;
+        }
+        .section-cn .cn-num {
+            color: #8b7355;
+            font-weight: 600;
+            margin-right: 0.3em;
+        }
+
+        /* 页码占位 */
+        .page-ref {
+            float: right;
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            font-weight: 400;
+            letter-spacing: 0.02em;
+            opacity: 0.7;
+        }
+
+        /* 分隔线 */
+        .soft-divider {
+            border: none;
+            border-top: 1px dotted var(--divider);
+            margin: 1.2rem 0 0.8rem;
+            opacity: 0.6;
+        }
+        .section-spacer {
+            height: 0.25rem;
+        }
+
+        /* 尾声等末页 */
+        .end-section {
+            font-family: var(--font-serif);
+            font-size: 1rem;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            color: #3d3020;
+            margin: 2rem 0 0.5rem;
+            padding: 0.5rem 0;
+            border-bottom: 1px dotted var(--divider);
+        }
+        .end-subsection {
+            margin: 0.3rem 0 0.1rem 1.2rem;
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            letter-spacing: 0.04em;
+        }
+
+        /* 响应式 */
+        @media (max-width: 700px) {
+            .book-page {
+                padding: 2rem 1.2rem 2rem;
+                border-radius: var(--radius-md);
+            }
+            .book-page::before,
+            .book-page::after {
+                left: 1.2rem;
+                right: 1.2rem;
+            }
+            .book-title-main {
+                font-size: 1.8rem;
+                letter-spacing: 0.08em;
+            }
+            .book-subtitle {
+                font-size: 0.85rem;
+                letter-spacing: 0.1em;
+            }
+            .book-meta-tags {
+                gap: 0.5rem;
+                font-size: 0.75rem;
+            }
+            .volume-header {
+                padding: 0.9rem 1rem;
+                margin: 1.8rem 0 1rem;
+            }
+            .volume-header .vol-title {
+                font-size: 1.1rem;
+            }
+            .chapter-title {
+                font-size: 0.95rem;
+            }
+            .section-level1 {
+                margin-left: 0.6rem;
+                font-size: 0.85rem;
+            }
+            .section-level2 {
+                margin-left: 1.4rem;
+                font-size: 0.78rem;
+            }
+            .section-level3,
+            .section-cn {
+                margin-left: 2.2rem;
+                font-size: 0.74rem;
+            }
+            .page-ref {
+                float: none;
+                display: inline;
+                margin-left: 0.4em;
+            }
+        }
+        @media (max-width: 420px) {
+            body {
+                padding: 0.5rem 0.3rem 2rem;
+            }
+            .book-page {
+                padding: 1.4rem 0.8rem 1.4rem;
+                border-radius: 6px;
+            }
+            .book-page::before,
+            .book-page::after {
+                left: 0.8rem;
+                right: 0.8rem;
+            }
+            .book-title-main {
+                font-size: 1.5rem;
+            }
+            .section-level2 {
+                margin-left: 1rem;
+            }
+            .section-level3,
+            .section-cn {
+                margin-left: 1.5rem;
+            }
+        }
+
+        /* 打印优化 */
+        @media print {
+            body {
+                background: #fff;
+                padding: 0;
+            }
+            .book-page {
+                box-shadow: none;
+                max-width: 100%;
+                border-radius: 0;
+                padding: 1.5rem 2rem;
+            }
+            .book-page::before,
+            .book-page::after {
+                display: none;
+            }
+            .volume-header {
+                break-inside: avoid;
+            }
+            .chapter-title {
+                break-after: avoid;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="book-page">
+
+        <!-- ==================== 书名区域 ==================== -->
+        <div class="title-block">
+            <h1 class="book-title-main">生<span class="dash">—</span>成</h1>
+            <p class="book-subtitle">持存 · 镶嵌 · 流变</p>
+            <div class="book-meta-tags">
+                <span>区分</span><span>持存</span><span>认知哲学</span>
+            </div>
+        </div>
+        <div class="ornament-divider">◆ ◆ ◆</div>
+
+        <!-- ==================== 自序 & 前言 ==================== -->
+        <div class="front-section-title">自&ensp;序 <span class="page-ref">1</span></div>
+        <div class="front-section-title">前&ensp;言 <span class="page-ref">2</span></div>
+
+        <!-- 1.1 -->
+        <div class="section-level1">
+            <span class="sec-num">1.1.</span> 从"区分"到"持存"——书名释义与缘起 <span class="page-ref">2</span>
+        </div>
+        <div class="section-cn"><span class="cn-num">一、</span>为什么封面是"持存、镶嵌、流变"？ <span class="page-ref">2</span></div>
+        <div class="section-cn"><span class="cn-num">二、</span>为什么进入书中以后，顺序反过来了？ <span class="page-ref">3</span></div>
+        <div class="section-cn"><span class="cn-num">三、</span>从"区分"到"持存"：永恒的循环 <span class="page-ref">4</span></div>
+        <div class="section-cn"><span class="cn-num">四、</span>"我"与"吾"：认知与意识的升维 <span class="page-ref">5</span></div>
+        <div class="section-cn"><span class="cn-num">五、</span>《生-成》的真正含义 <span class="page-ref">6</span></div>
+
+        <!-- 1.2 -->
+        <div class="section-level1">
+            <span class="sec-num">1.2.</span> 翻开这本书——导读 <span class="page-ref">7</span>
+        </div>
+        <div class="section-cn"><span class="cn-num">一、</span>让认知回归整全的图景 <span class="page-ref">7</span></div>
+        <div class="section-cn"><span class="cn-num">二、</span>这本书没有唯一的入口，也没有线性的终点 <span class="page-ref">7</span></div>
+        <div class="section-cn"><span class="cn-num">三、</span>这本书中的概念，不是孤立定义的 <span class="page-ref">8</span></div>
+
+        <hr class="soft-divider">
+
+        <!-- ==================== 上卷 ==================== -->
+        <div class="volume-header vol-1">
+            <div class="vol-tag">上&ensp;卷</div>
+            <div class="vol-title">基于区分的属性逻辑过程</div>
+            <div class="vol-subtitle">第1章 — 第14章</div>
+        </div>
+
+        <!-- 第1章 -->
+        <div class="chapter-title"><span class="chapter-number">第1章</span> 序章 <span class="page-ref">24</span></div>
+        <div class="section-level1"><span class="sec-num">1.1.</span> 体验：林间行 <span class="page-ref">24</span></div>
+        <div class="section-level1"><span class="sec-num">1.2.</span> 静观：认知生成的逻辑过程 <span class="page-ref">25</span></div>
+        <div class="section-cn"><span class="cn-num">一、</span>可区分性潜能的全集：认知的起点 <span class="page-ref">25</span></div>
+        <div class="section-cn"><span class="cn-num">二、</span>有与无：区分事件的核心成果与共生项 <span class="page-ref">26</span></div>
+        <div class="section-cn"><span class="cn-num">三、</span>隐：认知集合的动态更新 <span class="page-ref">26</span></div>
+        <div class="section-cn"><span class="cn-num">四、</span>可区分性的完整结构：纵向与横向耦合 <span class="page-ref">27</span></div>
+        <div class="section-cn"><span class="cn-num">五、</span>区分事件的底层基础与体系的终极指向 <span class="page-ref">28</span></div>
+        <div class="section-level1"><span class="sec-num">1.3.</span> 反思：吾的建构 <span class="page-ref">29</span></div>
+
+        <!-- 第2章 -->
+        <div class="chapter-title"><span class="chapter-number">第2章</span> 导论 <span class="page-ref">31</span></div>
+        <div class="section-level1"><span class="sec-num">2.1.</span> 区分事件：非有→非非有→有 <span class="page-ref">31</span></div>
+        <div class="section-level2"><span class="sec-num">2.1.1.</span> 非有：可区分性潜能的全集 <span class="page-ref">32</span></div>
+        <div class="section-level2"><span class="sec-num">2.1.2.</span> 非非有：可区分性潜能的实现过程 <span class="page-ref">33</span></div>
+        <div class="section-level1"><span class="sec-num">2.2.</span> 区分事件的四极张力模型 <span class="page-ref">34</span></div>
+        <div class="section-level2"><span class="sec-num">2.2.1.</span> 有与无 <span class="page-ref">35</span></div>
+        <div class="section-level2"><span class="sec-num">2.2.2.</span> 能与所 <span class="page-ref">36</span></div>
+        <div class="section-level2"><span class="sec-num">2.2.3.</span> 张力结构的迭代嵌套 <span class="page-ref">37</span></div>
+        <div class="section-level1"><span class="sec-num">2.3.</span> 区分内容的显现：所在 <span class="page-ref">40</span></div>
+        <div class="section-level2"><span class="sec-num">2.3.1.</span> 能者与所在 <span class="page-ref">40</span></div>
+        <div class="section-level2"><span class="sec-num">2.3.2.</span> 直接与间接 <span class="page-ref">41</span></div>
+        <div class="section-level2"><span class="sec-num">2.3.3.</span> 它指和自指 <span class="page-ref">42</span></div>
+        <div class="section-level2"><span class="sec-num">2.3.4.</span> 主体与对象 <span class="page-ref">42</span></div>
+        <div class="section-level1"><span class="sec-num">2.4.</span> 全然的图景：世界 <span class="page-ref">42</span></div>
+        <div class="section-level2"><span class="sec-num">2.4.1.</span> 内外四向 <span class="page-ref">43</span></div>
+        <div class="section-level2"><span class="sec-num">2.4.2.</span> 我-世界 <span class="page-ref">45</span></div>
+
+        <!-- 第3章 -->
+        <div class="chapter-title"><span class="chapter-number">第3章</span> 反思 <span class="page-ref">47</span></div>
+        <div class="section-level1"><span class="sec-num">3.1.</span> "有"的动力与指向 <span class="page-ref">47</span></div>
+        <div class="section-level1"><span class="sec-num">3.2.</span> "有"的展开 <span class="page-ref">47</span></div>
+        <div class="section-level2"><span class="sec-num">3.2.1.</span> 极微：可区分性的刹那显现 <span class="page-ref">47</span></div>
+        <div class="section-level2"><span class="sec-num">3.2.2.</span> 不在与在 <span class="page-ref">48</span></div>
+        <div class="section-level2"><span class="sec-num">3.2.3.</span> 在者与所在 <span class="page-ref">48</span></div>
+        <div class="section-level2"><span class="sec-num">3.2.4.</span> 对象与存在 <span class="page-ref">49</span></div>
+        <div class="section-level2"><span class="sec-num">3.2.5.</span> 世界与宇宙 <span class="page-ref">50</span></div>
+        <div class="section-level1"><span class="sec-num">3.3.</span> 存在的三种基本张力 <span class="page-ref">52</span></div>
+        <div class="section-level2"><span class="sec-num">3.3.1.</span> 逻辑与现实 <span class="page-ref">52</span></div>
+        <div class="section-level2"><span class="sec-num">3.3.2.</span> 主观与客观 <span class="page-ref">53</span></div>
+        <div class="section-level2"><span class="sec-num">3.3.3.</span> 有限与无限 <span class="page-ref">54</span></div>
+        <div class="section-level1"><span class="sec-num">3.4.</span> 哲学定位 <span class="page-ref">54</span></div>
+        <div class="section-level2"><span class="sec-num">3.4.1.</span> 从不确定性到确定性，从有限到无限 <span class="page-ref">54</span></div>
+        <div class="section-level2"><span class="sec-num">3.4.2.</span> 哲学是什么？ <span class="page-ref">55</span></div>
+
+        <!-- 第4章 -->
+        <div class="chapter-title"><span class="chapter-number">第4章</span> 起点 <span class="page-ref">57</span></div>
+        <div class="section-level1"><span class="sec-num">4.1.</span> 无有异同 <span class="page-ref">57</span></div>
+        <div class="section-level2"><span class="sec-num">4.1.1.</span> 0态：无——生成的源始基底 <span class="page-ref">58</span></div>
+        <div class="section-level2"><span class="sec-num">4.1.2.</span> 1态：有——可区分性首次现实化 <span class="page-ref">58</span></div>
+        <div class="section-level2"><span class="sec-num">4.1.3.</span> 2态：异——极性分化态·差异显现 <span class="page-ref">58</span></div>
+        <div class="section-level2"><span class="sec-num">4.1.4.</span> 3态：同——确定性的源始起点 <span class="page-ref">59</span></div>
+        <div class="section-level1"><span class="sec-num">4.2.</span> 一维：有异有同 <span class="page-ref">59</span></div>
+        <div class="section-level2"><span class="sec-num">4.2.1.</span> 4态：确定性关系的生成 <span class="page-ref">60</span></div>
+        <div class="section-level1"><span class="sec-num">4.3.</span> 二维：动态循环 <span class="page-ref">60</span></div>
+        <div class="section-level2"><span class="sec-num">4.3.1.</span> 5态：动中之定：结构的成型 <span class="page-ref">60</span></div>
+        <div class="section-level1"><span class="sec-num">4.4.</span> 对象及其可区分性的诞生 <span class="page-ref">61</span></div>
+        <div class="section-level1"><span class="sec-num">4.5.</span> 完整循环的生成框架 <span class="page-ref">62</span></div>
+        <div class="section-level1"><span class="sec-num">4.6.</span> 言说起点 <span class="page-ref">62</span></div>
+
+        <!-- 第5章 -->
+        <div class="chapter-title"><span class="chapter-number">第5章</span> 关系 <span class="page-ref">64</span></div>
+        <div class="section-level1"><span class="sec-num">5.1.</span> 关系先于结构之存在 <span class="page-ref">64</span></div>
+        <div class="section-level1"><span class="sec-num">5.2.</span> 相：关系的四象结构 <span class="page-ref">65</span></div>
+        <div class="section-level2"><span class="sec-num">5.2.1.</span> 能-相-所 <span class="page-ref">65</span></div>
+        <div class="section-level2"><span class="sec-num">5.2.2.</span> 关系的集合表达形式 <span class="page-ref">66</span></div>
+        <div class="section-level1"><span class="sec-num">5.3.</span> "关系-位点"的四向表达形式 <span class="page-ref">67</span></div>
+        <div class="section-level1"><span class="sec-num">5.4.</span> 关系的类型与次第 <span class="page-ref">68</span></div>
+        <div class="section-level1"><span class="sec-num">5.5.</span> 对象的显现 <span class="page-ref">69</span></div>
+        <div class="section-level1"><span class="sec-num">5.6.</span> （对-象） <span class="page-ref">70</span></div>
+
+        <!-- 第6章 -->
+        <div class="chapter-title"><span class="chapter-number">第6章</span> 感应 <span class="page-ref">74</span></div>
+        <div class="section-level1"><span class="sec-num">6.1.</span> 有无应感四相 <span class="page-ref">74</span></div>
+        <div class="section-level2"><span class="sec-num">6.1.1.</span> 无应无感 <span class="page-ref">74</span></div>
+        <div class="section-level2"><span class="sec-num">6.1.2.</span> 有应无感 <span class="page-ref">75</span></div>
+        <div class="section-level2"><span class="sec-num">6.1.3.</span> 有应有感：耦合而"有"之真实性 <span class="page-ref">77</span></div>
+        <div class="section-level2"><span class="sec-num">6.1.4.</span> 有感无应：空 <span class="page-ref">79</span></div>
+        <div class="section-level1"><span class="sec-num">6.2.</span> 能者 <span class="page-ref">80</span></div>
+        <div class="section-level2"><span class="sec-num">6.2.1.</span> 境 <span class="page-ref">80</span></div>
+        <div class="section-level2"><span class="sec-num">6.2.2.</span> （能-所） <span class="page-ref">81</span></div>
+
+        <!-- 第7章 -->
+        <div class="chapter-title"><span class="chapter-number">第7章</span> 空有循环 <span class="page-ref">83</span></div>
+        <div class="section-level1"><span class="sec-num">7.1.</span> 能所感应循环 <span class="page-ref">83</span></div>
+        <div class="section-level2"><span class="sec-num">7.1.1.</span> 先天 <span class="page-ref">84</span></div>
+        <div class="section-level2"><span class="sec-num">7.1.2.</span> 后天 <span class="page-ref">86</span></div>
+        <div class="section-level2"><span class="sec-num">7.1.3.</span> 非空-空 <span class="page-ref">87</span></div>
+        <div class="section-level1"><span class="sec-num">7.2.</span> 空有循环 <span class="page-ref">88</span></div>
+        <div class="section-level2"><span class="sec-num">7.2.1.</span> 四极与四立 <span class="page-ref">88</span></div>
+        <div class="section-level2"><span class="sec-num">7.2.2.</span> 四向 <span class="page-ref">90</span></div>
+        <div class="section-level1"><span class="sec-num">7.3.</span> 空有循环的动力来源 <span class="page-ref">92</span></div>
+        <div class="section-level2"><span class="sec-num">7.3.1.</span> 意向性 <span class="page-ref">92</span></div>
+        <div class="section-level2"><span class="sec-num">7.3.2.</span> 三层稳态的代偿结构 <span class="page-ref">98</span></div>
+        <div class="section-level2"><span class="sec-num">7.3.3.</span> 内协而外争：代偿结构的必然格局 <span class="page-ref">100</span></div>
+        <div class="section-level1"><span class="sec-num">7.4.</span> 空有循环驱动层级演化 <span class="page-ref">101</span></div>
+        <div class="section-level2"><span class="sec-num">7.4.1.</span> "空有对峙"的内在结构 <span class="page-ref">101</span></div>
+        <div class="section-level2"><span class="sec-num">7.4.2.</span> 论演化层级：空有循环与先天后天之统一 <span class="page-ref">102</span></div>
+
+        <!-- 第8章 -->
+        <div class="chapter-title"><span class="chapter-number">第8章</span> 时空生成 <span class="page-ref">104</span></div>
+        <div class="section-level1"><span class="sec-num">8.1.</span> 导言：时空作为问题，而非前提 <span class="page-ref">104</span></div>
+        <div class="section-level1"><span class="sec-num">8.2.</span> 起点：刹那——非异非同的纯粹事件 <span class="page-ref">105</span></div>
+        <div class="section-level1"><span class="sec-num">8.3.</span> 时间的涌出：异同之辨的纵向建构 <span class="page-ref">106</span></div>
+        <div class="section-level2"><span class="sec-num">8.3.1.</span> 是异非同：混沌的差异之流 <span class="page-ref">106</span></div>
+        <div class="section-level2"><span class="sec-num">8.3.2.</span> 由异而同（上）："元时间"的诞生 <span class="page-ref">106</span></div>
+        <div class="section-level2"><span class="sec-num">8.3.3.</span> 由异而同（下）："确定性时间"的奠基 <span class="page-ref">107</span></div>
+        <div class="section-level2"><span class="sec-num">8.3.4.</span> 是同非异：时间框架的客体化与统一化 <span class="page-ref">108</span></div>
+        <div class="section-level1"><span class="sec-num">8.4.</span> 空间的绽放：异同之辨的横向展开 <span class="page-ref">108</span></div>
+        <div class="section-level2"><span class="sec-num">8.4.1.</span> 逻辑前提 <span class="page-ref">108</span></div>
+        <div class="section-level2"><span class="sec-num">8.4.2.</span> 成果：存在性对象的时空定型 <span class="page-ref">109</span></div>
+        <div class="section-level1"><span class="sec-num">8.5.</span> 空的层级性与统一性：耦合梯度的视角 <span class="page-ref">109</span></div>
+        <div class="section-level2"><span class="sec-num">8.5.1.</span> 耦合梯度：时空结构的普适性原理 <span class="page-ref">110</span></div>
+        <div class="section-level2"><span class="sec-num">8.5.2.</span> 从多元私时到统一公时：认知界面的建构 <span class="page-ref">110</span></div>
+        <div class="section-level2"><span class="sec-num">8.5.3.</span> 主客统一的最终证明 <span class="page-ref">111</span></div>
+        <div class="section-level1"><span class="sec-num">8.6.</span> 结论：时空作为存在性的普遍语法 <span class="page-ref">111</span></div>
+
+        <!-- 第9章 -->
+        <div class="chapter-title"><span class="chapter-number">第9章</span> 有无相生 <span class="page-ref">113</span></div>
+        <div class="section-level1"><span class="sec-num">9.1.</span> 有限性和无限性 <span class="page-ref">113</span></div>
+        <div class="section-level1"><span class="sec-num">9.2.</span> "有"之结构——对象的五维透视 <span class="page-ref">114</span></div>
+        <div class="section-level2"><span class="sec-num">9.2.1.</span> 时间之维："有"在时间流中的三重形态 <span class="page-ref">114</span></div>
+        <div class="section-level2"><span class="sec-num">9.2.2.</span> 所能相之维："有"作为主客耦合的一体三相 <span class="page-ref">115</span></div>
+        <div class="section-level2"><span class="sec-num">9.2.3.</span> 真实性之维："有"的真实性梯度 <span class="page-ref">117</span></div>
+        <div class="section-level2"><span class="sec-num">9.2.4.</span> 尺度之维："有"的边界随尺度变化 <span class="page-ref">117</span></div>
+        <div class="section-level2"><span class="sec-num">9.2.5.</span> 显隐之维："有"在意识与存在中的二元形态 <span class="page-ref">117</span></div>
+        <div class="section-level1"><span class="sec-num">9.3.</span> （有-无）——"有无四向"的认知呼吸 <span class="page-ref">119</span></div>
+        <div class="section-level3"><span class="sec-num">1.</span> 无→有（立法）：从混沌中确立秩序 <span class="page-ref">119</span></div>
+        <div class="section-level3"><span class="sec-num">2.</span> 有→有（建构）：在秩序中深化体系 <span class="page-ref">119</span></div>
+        <div class="section-level3"><span class="sec-num">3.</span> 有→无（归隐）：从秩序中回归开放 <span class="page-ref">119</span></div>
+        <div class="section-level3"><span class="sec-num">4.</span> 无→无（化育）：在混沌中孕育可能 <span class="page-ref">120</span></div>
+        <div class="section-level3"><span class="sec-num">5.</span> 四向关系：共时互补的"认知呼吸"系统 <span class="page-ref">120</span></div>
+
+        <!-- 第10章 -->
+        <div class="chapter-title"><span class="chapter-number">第10章</span> 异同之辨 <span class="page-ref">122</span></div>
+        <div class="section-level1"><span class="sec-num">10.1.</span> 异-同 <span class="page-ref">122</span></div>
+        <div class="section-level2"><span class="sec-num">10.1.1.</span> 所所异同 <span class="page-ref">122</span></div>
+        <div class="section-level2"><span class="sec-num">10.1.2.</span> 能所异同 <span class="page-ref">123</span></div>
+        <div class="section-level2"><span class="sec-num">10.1.3.</span> 相相异同 <span class="page-ref">123</span></div>
+        <div class="section-level1"><span class="sec-num">10.2.</span> 有无异同：发现 <span class="page-ref">123</span></div>
+        <div class="section-level2"><span class="sec-num">10.2.1.</span> 无同无异 <span class="page-ref">124</span></div>
+        <div class="section-level2"><span class="sec-num">10.2.2.</span> 有异无同 <span class="page-ref">124</span></div>
+        <div class="section-level2"><span class="sec-num">10.2.3.</span> 有异有同 <span class="page-ref">124</span></div>
+        <div class="section-level2"><span class="sec-num">10.2.4.</span> 有同无异 <span class="page-ref">125</span></div>
+        <div class="section-level1"><span class="sec-num">10.3.</span> 异同四向：分别 <span class="page-ref">125</span></div>
+        <div class="section-level2"><span class="sec-num">10.3.1.</span> 异之有同 <span class="page-ref">126</span></div>
+        <div class="section-level2"><span class="sec-num">10.3.2.</span> 同之有同 <span class="page-ref">126</span></div>
+        <div class="section-level2"><span class="sec-num">10.3.3.</span> 同之有异 <span class="page-ref">126</span></div>
+        <div class="section-level2"><span class="sec-num">10.3.4.</span> 异之有异 <span class="page-ref">126</span></div>
+        <div class="section-level1"><span class="sec-num">10.4.</span> 异同七阶：空→非空 <span class="page-ref">127</span></div>
+        <div class="section-level1"><span class="sec-num">10.5.</span> 是非异同：非空而有的判断 <span class="page-ref">129</span></div>
+        <div class="section-level2"><span class="sec-num">10.5.1.</span> 是同非异 <span class="page-ref">129</span></div>
+        <div class="section-level2"><span class="sec-num">10.5.2.</span> 由同而异 <span class="page-ref">129</span></div>
+        <div class="section-level2"><span class="sec-num">10.5.3.</span> 是异非同 <span class="page-ref">130</span></div>
+        <div class="section-level2"><span class="sec-num">10.5.4.</span> 由异而同 <span class="page-ref">130</span></div>
+        <div class="section-level1"><span class="sec-num">10.6.</span> 总结：从感应到判断的认知之旅 <span class="page-ref">131</span></div>
+
+        <!-- 第11章 -->
+        <div class="chapter-title"><span class="chapter-number">第11章</span> 属性相应 <span class="page-ref">132</span></div>
+        <div class="section-level1"><span class="sec-num">11.1.</span> 属性的认知定位——高阶显化的内外耦合 <span class="page-ref">132</span></div>
+        <div class="section-level1"><span class="sec-num">11.2.</span> 底层奠基：空有循环——有与相的基础生成 <span class="page-ref">133</span></div>
+        <div class="section-level1"><span class="sec-num">11.3.</span> 层级跃迁：从能知到能者——相→识的显化开端 <span class="page-ref">134</span></div>
+        <div class="section-level1"><span class="sec-num">11.4.</span> 属性的本质界定：属与性的内外双向耦合 <span class="page-ref">135</span></div>
+        <div class="section-level1"><span class="sec-num">11.5.</span> 属性的运作机制：从相到识的整合加工 <span class="page-ref">136</span></div>
+        <div class="section-level1"><span class="sec-num">11.6.</span> 属性的可迭代性：高阶属性与复杂概念的生成 <span class="page-ref">137</span></div>
+        <div class="section-level1"><span class="sec-num">11.7.</span> 认知梯度：属性过程的快慢转化与浅隐回归 <span class="page-ref">138</span></div>
+        <div class="section-level1"><span class="sec-num">11.8.</span> 属性的体系总结：高阶展开与全书定位 <span class="page-ref">139</span></div>
+        <div class="section-level1"><span class="sec-num">11.9.</span> 立法的实践：属-性四向操作 <span class="page-ref">140</span></div>
+        <div class="section-level2"><span class="sec-num">11.9.1.</span> 性→属（开拓立法：从现象到新知） <span class="page-ref">141</span></div>
+        <div class="section-level2"><span class="sec-num">11.9.2.</span> 属→性（应用立法：从知识到识别） <span class="page-ref">141</span></div>
+        <div class="section-level2"><span class="sec-num">11.9.3.</span> 属→属（体系立法：从知识到知识） <span class="page-ref">141</span></div>
+        <div class="section-level2"><span class="sec-num">11.9.4.</span> 性→性（客观化立法：从现象到现象） <span class="page-ref">141</span></div>
+        <div class="section-level1"><span class="sec-num">11.10.</span> 属性的普适性——从直观经验到科学客观性 <span class="page-ref">141</span></div>
+
+        <!-- 第12章 -->
+        <div class="chapter-title"><span class="chapter-number">第12章</span> 阴阳耦合 <span class="page-ref">144</span></div>
+        <div class="section-level1"><span class="sec-num">12.1.</span> 从属性到结构的必然推演 <span class="page-ref">144</span></div>
+        <div class="section-level2"><span class="sec-num">12.1.1.</span> 承接前章的核心结论 <span class="page-ref">144</span></div>
+        <div class="section-level2"><span class="sec-num">12.1.2.</span> 本章总前提：阴阳是认知语法，非世界本体 <span class="page-ref">144</span></div>
+        <div class="section-level2"><span class="sec-num">12.1.3.</span> 本章核心任务 <span class="page-ref">144</span></div>
+        <div class="section-level1"><span class="sec-num">12.2.</span> 阴阳耦合 <span class="page-ref">145</span></div>
+        <div class="section-level2"><span class="sec-num">12.2.1.</span> 阴阳结构的生成前提：主体"需"的有限域 <span class="page-ref">145</span></div>
+        <div class="section-level2"><span class="sec-num">12.2.2.</span> 有限域内的必然生成：二元结构的发生原理 <span class="page-ref">147</span></div>
+        <div class="section-level2"><span class="sec-num">12.2.3.</span> 二元结构的核心锚点："中"的生成与测量 <span class="page-ref">148</span></div>
+        <div class="section-level2"><span class="sec-num">12.2.4.</span> 概念划界一：阴阳与传统阴阳的本质区分 <span class="page-ref">150</span></div>
+        <div class="section-level2"><span class="sec-num">12.2.5.</span> 概念划界二：阴阳耦合与矛盾论的异同辨析 <span class="page-ref">151</span></div>
+        <div class="section-level2"><span class="sec-num">12.2.6.</span> 全称证明：属性，必然具备阴阳结构 <span class="page-ref">152</span></div>
+        <div class="section-level2"><span class="sec-num">12.2.7.</span> 理论自洽：本书概念体系的阴阳结构闭环 <span class="page-ref">154</span></div>
+        <div class="section-level1"><span class="sec-num">12.3.</span> 结论：阴阳的完整内涵 <span class="page-ref">155</span></div>
+
+        <!-- 第13章 -->
+        <div class="chapter-title"><span class="chapter-number">第13章</span> 内外迭代 <span class="page-ref">157</span></div>
+        <div class="section-level1"><span class="sec-num">13.1.</span> "内-外"的生成——边界何以必然？ <span class="page-ref">157</span></div>
+        <div class="section-level2"><span class="sec-num">13.1.1.</span> 边界的逻辑必然性：认知的"第一刀" <span class="page-ref">157</span></div>
+        <div class="section-level2"><span class="sec-num">13.1.2.</span> "内外"的动词性本质与自驱动力 <span class="page-ref">157</span></div>
+        <div class="section-level1"><span class="sec-num">13.2.</span> "内-外"的结构——边界何以各异？ <span class="page-ref">158</span></div>
+        <div class="section-level2"><span class="sec-num">13.2.1.</span> 模型的构成与解读 <span class="page-ref">158</span></div>
+        <div class="section-level2"><span class="sec-num">13.2.2.</span> 边界的相对性根源：能者的"尺度" <span class="page-ref">158</span></div>
+        <div class="section-level2"><span class="sec-num">13.2.3.</span> 模型的理论意涵 <span class="page-ref">159</span></div>
+        <div class="section-level1"><span class="sec-num">13.3.</span> "内-外"的辩证——"内外四象与七阶" <span class="page-ref">159</span></div>
+        <div class="section-level2"><span class="sec-num">13.3.1.</span> "有无内外"四象 <span class="page-ref">159</span></div>
+        <div class="section-level2"><span class="sec-num">13.3.2.</span> "内外四向" <span class="page-ref">160</span></div>
+        <div class="section-level2"><span class="sec-num">13.3.3.</span> "内外七阶"的辩证路径 <span class="page-ref">162</span></div>
+        <div class="section-level2"><span class="sec-num">13.3.4.</span> （内-外）作为方法论 <span class="page-ref">163</span></div>
+        <div class="section-level1"><span class="sec-num">13.4.</span> 边界的消融与指向万物一体 <span class="page-ref">164</span></div>
+
+        <!-- 第14章 -->
+        <div class="chapter-title"><span class="chapter-number">第14章</span> 对象之能所 <span class="page-ref">166</span></div>
+        <div class="section-level1"><span class="sec-num">14.1.</span> 内外之对 <span class="page-ref">166</span></div>
+        <div class="section-level2"><span class="sec-num">14.1.1.</span> 内在与外在 <span class="page-ref">166</span></div>
+        <div class="section-level2"><span class="sec-num">14.1.2.</span> "对" <span class="page-ref">167</span></div>
+        <div class="section-level2"><span class="sec-num">14.1.3.</span> "象" <span class="page-ref">167</span></div>
+        <div class="section-level1"><span class="sec-num">14.2.</span> "能者与所在"作为"对象-关系"而存在 <span class="page-ref">168</span></div>
+        <div class="section-level1"><span class="sec-num">14.3.</span> 认知生成的回环模型 <span class="page-ref">168</span></div>
+
+        <hr class="soft-divider">
+
+        <!-- ==================== 下卷 ==================== -->
+        <div class="volume-header vol-2">
+            <div class="vol-tag">下&ensp;卷</div>
+            <div class="vol-title">流变 · 镶嵌 · 持存</div>
+            <div class="vol-subtitle">第15章 — 第25章</div>
+        </div>
+
+        <!-- 第15章 -->
+        <div class="chapter-title"><span class="chapter-number">第15章</span> 确定性之矢 <span class="page-ref">172</span></div>
+        <div class="section-level1"><span class="sec-num">15.1.</span> 确定性之始：相 <span class="page-ref">172</span></div>
+        <div class="section-level1"><span class="sec-num">15.2.</span> 气・有・是・真・在 <span class="page-ref">172</span></div>
+        <div class="section-level1"><span class="sec-num">15.3.</span> 从空有循环到确定性之矢 <span class="page-ref">174</span></div>
+        <div class="section-level1"><span class="sec-num">15.4.</span> 定・动・变・化・合 <span class="page-ref">174</span></div>
+        <div class="section-level1"><span class="sec-num">15.5.</span> 能者持存性生成的三重递进实践闭环 <span class="page-ref">176</span></div>
+        <div class="section-level2"><span class="sec-num">15.5.1.</span> 存在之"定"：平衡 <span class="page-ref">176</span></div>
+        <div class="section-level2"><span class="sec-num">15.5.2.</span> 第一重闭环：外拓之矢 <span class="page-ref">177</span></div>
+        <div class="section-level2"><span class="sec-num">15.5.3.</span> 第二重闭环：内明之矢 <span class="page-ref">178</span></div>
+        <div class="section-level2"><span class="sec-num">15.5.4.</span> 第三重闭环：演化跃迁之矢 <span class="page-ref">179</span></div>
+        <div class="section-level1"><span class="sec-num">15.6.</span> 三重闭环的体系性总括 <span class="page-ref">180</span></div>
+        <div class="section-level1"><span class="sec-num">15.7.</span> 从生命演化到个体觉醒的必然路径 <span class="page-ref">181</span></div>
+        <div class="section-level2"><span class="sec-num">15.7.1.</span> 引言 <span class="page-ref">181</span></div>
+        <div class="section-level2"><span class="sec-num">15.7.2.</span> 生成的三层基本法则：逻辑必然性的证明 <span class="page-ref">181</span></div>
+        <div class="section-level2"><span class="sec-num">15.7.3.</span> 生命生成的普遍法则：从基因到生态 <span class="page-ref">183</span></div>
+        <div class="section-level2"><span class="sec-num">15.7.4.</span> 人类生成的革命性突破：软结构的独立演化 <span class="page-ref">184</span></div>
+        <div class="section-level2"><span class="sec-num">15.7.5.</span> 被动代偿的困境与主动生成的必然性 <span class="page-ref">185</span></div>
+        <div class="section-level2"><span class="sec-num">15.7.6.</span> 结论 <span class="page-ref">186</span></div>
+
+        <!-- 第16章 -->
+        <div class="chapter-title"><span class="chapter-number">第16章</span> 演化过程：持存 <span class="page-ref">188</span></div>
+        <div class="section-level1"><span class="sec-num">16.1.</span> 本章核心定位与后续章节脉络锚定 <span class="page-ref">188</span></div>
+        <div class="section-level1"><span class="sec-num">16.2.</span> 能所四向：跃迁之矢的硬结构梯度演化详解 <span class="page-ref">189</span></div>
+        <div class="section-level2"><span class="sec-num">16.2.1.</span> 第一向：所→能，被动耦合 <span class="page-ref">189</span></div>
+        <div class="section-level2"><span class="sec-num">16.2.2.</span> 第二向：能→所，主动探寻 <span class="page-ref">191</span></div>
+        <div class="section-level2"><span class="sec-num">16.2.3.</span> 第三向：能→(所-所)，规律耦合 <span class="page-ref">192</span></div>
+        <div class="section-level2"><span class="sec-num">16.2.4.</span> 第四向：能→能，反身自指 <span class="page-ref">193</span></div>
+        <div class="section-level1"><span class="sec-num">16.3.</span> 能所四向硬结构演化的核心共生法则 <span class="page-ref">195</span></div>
+        <div class="section-level1"><span class="sec-num">16.4.</span> 本章结论 <span class="page-ref">195</span></div>
+
+        <!-- 第17章 -->
+        <div class="chapter-title"><span class="chapter-number">第17章</span> 生长过程：镶嵌 <span class="page-ref">197</span></div>
+        <div class="section-level1"><span class="sec-num">17.1.</span> 本章核心定位 <span class="page-ref">197</span></div>
+        <div class="section-level1"><span class="sec-num">17.2.</span> 身心四向：内明之矢的软结构梯度生长详解 <span class="page-ref">198</span></div>
+        <div class="section-level2"><span class="sec-num">17.2.1.</span> 第一向：身→心，被动受纳 <span class="page-ref">198</span></div>
+        <div class="section-level2"><span class="sec-num">17.2.2.</span> 第二向：心→身，主动感知 <span class="page-ref">199</span></div>
+        <div class="section-level2"><span class="sec-num">17.2.3.</span> 第三向：身→身，自动化协同 <span class="page-ref">200</span></div>
+        <div class="section-level2"><span class="sec-num">17.2.4.</span> 第四向：心→心，反身自指 <span class="page-ref">202</span></div>
+        <div class="section-level1"><span class="sec-num">17.3.</span> 身心四向软结构生长的核心共生法则 <span class="page-ref">203</span></div>
+        <div class="section-level1"><span class="sec-num">17.4.</span> 本章结论 <span class="page-ref">204</span></div>
+
+        <!-- 第18章 -->
+        <div class="chapter-title"><span class="chapter-number">第18章</span> （我-世界）：流变 <span class="page-ref">205</span></div>
+        <div class="section-level1"><span class="sec-num">18.1.</span> 本章的核心起点与体系定位 <span class="page-ref">205</span></div>
+        <div class="section-level2"><span class="sec-num">18.1.1.</span> 本章的起点：前两章的生成成果 <span class="page-ref">205</span></div>
+        <div class="section-level2"><span class="sec-num">18.1.2.</span> 本章的核心主旨与体系定位 <span class="page-ref">206</span></div>
+        <div class="section-level2"><span class="sec-num">18.1.3.</span> 核心概念刚性界定 <span class="page-ref">206</span></div>
+        <div class="section-level1"><span class="sec-num">18.2.</span> "我"的本质：无结构的觉知原点 <span class="page-ref">206</span></div>
+        <div class="section-level1"><span class="sec-num">18.3.</span> 我与境的终极切割：从身心二元到觉知二元 <span class="page-ref">207</span></div>
+        <div class="section-level1"><span class="sec-num">18.4.</span> 我-世界的四象张开：以我为原点的完整世界框架 <span class="page-ref">208</span></div>
+        <div class="section-level2"><span class="sec-num">18.4.1.</span> 四象框架的核心坐标定义 <span class="page-ref">209</span></div>
+        <div class="section-level2"><span class="sec-num">18.4.2.</span> 六合关系：我-世界的完整实践闭环 <span class="page-ref">210</span></div>
+        <div class="section-level1"><span class="sec-num">18.5.</span> 本章结论 <span class="page-ref">211</span></div>
+
+        <!-- 第19章 -->
+        <div class="chapter-title"><span class="chapter-number">第19章</span> 我的觉醒：吾 <span class="page-ref">213</span></div>
+        <div class="section-level1"><span class="sec-num">19.1.</span> 吾的诞生：对"我"的观照与代偿 <span class="page-ref">213</span></div>
+        <div class="section-level2"><span class="sec-num">19.1.1.</span> 吾的涌现：持存困境下的必然产物 <span class="page-ref">214</span></div>
+        <div class="section-level2"><span class="sec-num">19.1.2.</span> 吾对"我"的根本发现 <span class="page-ref">214</span></div>
+        <div class="section-level2"><span class="sec-num">19.1.3.</span> 我必然"内协而外争" <span class="page-ref">215</span></div>
+        <div class="section-level1"><span class="sec-num">19.2.</span> 我的层级嵌套：从个体到共识宇宙 <span class="page-ref">215</span></div>
+        <div class="section-level2"><span class="sec-num">19.2.1.</span> 我的可嵌套性 <span class="page-ref">215</span></div>
+        <div class="section-level2"><span class="sec-num">19.2.2.</span> 嵌套结构的体系意义 <span class="page-ref">216</span></div>
+        <div class="section-level1"><span class="sec-num">19.3.</span> 吾的使命：一条不同于毁灭的道路 <span class="page-ref">216</span></div>
+        <div class="section-level2"><span class="sec-num">19.3.1.</span> 无意识之我：内协外争驱动的残酷历史 <span class="page-ref">216</span></div>
+        <div class="section-level2"><span class="sec-num">19.3.2.</span> 吾：打破毁灭轮回的唯一可能 <span class="page-ref">217</span></div>
+        <div class="section-level2"><span class="sec-num">19.3.3.</span> 吾的独特道路：从内协外争到内协外协 <span class="page-ref">217</span></div>
+        <div class="section-level1"><span class="sec-num">19.4.</span> 吾的四重作用：意识觉醒的四级跃升与自由的贯穿 <span class="page-ref">218</span></div>
+        <div class="section-level2"><span class="sec-num">19.4.1.</span> 价值——吾作为"我"的代偿 <span class="page-ref">218</span></div>
+        <div class="section-level2"><span class="sec-num">19.4.2.</span> 意志——将觉醒本身确立为终极方向 <span class="page-ref">219</span></div>
+        <div class="section-level2"><span class="sec-num">19.4.3.</span> 伦理——促进群体的正向耦合 <span class="page-ref">219</span></div>
+        <div class="section-level2"><span class="sec-num">19.4.4.</span> 自由——内协外协的终极践行 <span class="page-ref">220</span></div>
+        <div class="section-level1"><span class="sec-num">19.5.</span> 结论：清醒的、开放的、永动的整体 <span class="page-ref">220</span></div>
+
+        <!-- 第20章 -->
+        <div class="chapter-title"><span class="chapter-number">第20章</span> 吾的世界 <span class="page-ref">222</span></div>
+        <div class="section-level1"><span class="sec-num">20.1.</span> 世界是属性的 <span class="page-ref">222</span></div>
+        <div class="section-level2"><span class="sec-num">20.1.1.</span> 我的建构：知的正向进程 <span class="page-ref">224</span></div>
+        <div class="section-level2"><span class="sec-num">20.1.2.</span> 吾的解构：有→空的逆行循环 <span class="page-ref">225</span></div>
+        <div class="section-level1"><span class="sec-num">20.2.</span> 吾的世界 <span class="page-ref">225</span></div>
+        <div class="section-level2"><span class="sec-num">20.2.1.</span> 从内在全然的图景到外在符号体系 <span class="page-ref">225</span></div>
+        <div class="section-level2"><span class="sec-num">20.2.2.</span> 本书的概念体系结构 <span class="page-ref">228</span></div>
+        <div class="section-level1"><span class="sec-num">20.3.</span> 存在与发展的逻辑 <span class="page-ref">228</span></div>
+
+        <!-- 第21章 -->
+        <div class="chapter-title"><span class="chapter-number">第21章</span> 真实性：存在的根基 <span class="page-ref">229</span></div>
+        <div class="section-level1"><span class="sec-num">21.1.</span> 真实性的五个维度 <span class="page-ref">229</span></div>
+        <div class="section-level3"><span class="sec-num">1)</span> 经验真实：平衡"身-心" <span class="page-ref">229</span></div>
+        <div class="section-level3"><span class="sec-num">2)</span> 科学真实：掌控"它们" <span class="page-ref">229</span></div>
+        <div class="section-level3"><span class="sec-num">3)</span> 语言真实：沟通"我-你" <span class="page-ref">229</span></div>
+        <div class="section-level3"><span class="sec-num">4)</span> 社会真实：成就"我们" <span class="page-ref">230</span></div>
+        <div class="section-level3"><span class="sec-num">5)</span> 符号真实：真实性的表达 <span class="page-ref">230</span></div>
+        <div class="section-level1"><span class="sec-num">21.2.</span> 我与世界的耦合 <span class="page-ref">231</span></div>
+
+        <!-- 第22章 -->
+        <div class="chapter-title"><span class="chapter-number">第22章</span> 世界→宇宙：发展的逻辑 <span class="page-ref">232</span></div>
+        <div class="section-level1"><span class="sec-num">22.1.</span> 符号：群体认知起始 <span class="page-ref">232</span></div>
+        <div class="section-level2"><span class="sec-num">22.1.1.</span> 符号来源：从"相"到"所"的固化 <span class="page-ref">232</span></div>
+        <div class="section-level2"><span class="sec-num">22.1.2.</span> 符号本质："知"作为群体认知之"相" <span class="page-ref">233</span></div>
+        <div class="section-level2"><span class="sec-num">22.1.3.</span> 语言与符号："能-能"耦合 <span class="page-ref">233</span></div>
+        <div class="section-level1"><span class="sec-num">22.2.</span> 共识世界的诞生：群体的外耦合 <span class="page-ref">235</span></div>
+        <div class="section-level2"><span class="sec-num">22.2.1.</span> 个体→个体：主体间的直接耦合 <span class="page-ref">236</span></div>
+        <div class="section-level2"><span class="sec-num">22.2.2.</span> 个体→群体：个体对群体的融入与塑造 <span class="page-ref">236</span></div>
+        <div class="section-level2"><span class="sec-num">22.2.3.</span> 群体→个体：群体对个体的社会化塑造 <span class="page-ref">236</span></div>
+        <div class="section-level2"><span class="sec-num">22.2.4.</span> 群体→群体：群体的自指与文明的跃迁 <span class="page-ref">236</span></div>
+        <div class="section-level2"><span class="sec-num">22.2.5.</span> 群体觉醒 <span class="page-ref">237</span></div>
+        <div class="section-level1"><span class="sec-num">22.3.</span> 群体作为能知者：大吾 <span class="page-ref">237</span></div>
+        <div class="section-level2"><span class="sec-num">22.3.1.</span> 文化：社会真实性的传承 <span class="page-ref">238</span></div>
+        <div class="section-level2"><span class="sec-num">22.3.2.</span> 文明：群体实践的有效性 <span class="page-ref">238</span></div>
+        <div class="section-level2"><span class="sec-num">22.3.3.</span> 立法：普遍主体的确立 <span class="page-ref">239</span></div>
+        <div class="section-level1"><span class="sec-num">22.4.</span> 宇宙之全然 <span class="page-ref">240</span></div>
+        <div class="section-level2"><span class="sec-num">22.4.1.</span> 个体之相与全体之法 <span class="page-ref">240</span></div>
+        <div class="section-level2"><span class="sec-num">22.4.2.</span> 道法自然 <span class="page-ref">241</span></div>
+
+        <!-- 第23章 -->
+        <div class="chapter-title"><span class="chapter-number">第23章</span> 识与结构合一 <span class="page-ref">243</span></div>
+        <div class="section-level1"><span class="sec-num">23.1.</span> 感知应一体 <span class="page-ref">243</span></div>
+        <div class="section-level2"><span class="sec-num">23.1.1.</span> 耦：感应分离的第一次否定 <span class="page-ref">244</span></div>
+        <div class="section-level2"><span class="sec-num">23.1.2.</span> 合：否定之否定的感知应一体 <span class="page-ref">244</span></div>
+        <div class="section-level2"><span class="sec-num">23.1.3.</span> 内外：边界的动态逻辑 <span class="page-ref">245</span></div>
+        <div class="section-level1"><span class="sec-num">23.2.</span> 存在对象：结构与非结构共生 <span class="page-ref">245</span></div>
+        <div class="section-level2"><span class="sec-num">23.2.1.</span> 作为整体对外：凝固的硬结构 <span class="page-ref">245</span></div>
+        <div class="section-level2"><span class="sec-num">23.2.2.</span> 作为系统对内：流动的软结构 <span class="page-ref">246</span></div>
+        <div class="section-level2"><span class="sec-num">23.2.3.</span> 共生的终极本质 <span class="page-ref">246</span></div>
+        <div class="section-level2"><span class="sec-num">23.2.4.</span> 刚柔一体：软硬结构的辩证合一 <span class="page-ref">247</span></div>
+        <div class="section-level1"><span class="sec-num">23.3.</span> 能者的四体与七阶 <span class="page-ref">248</span></div>
+        <div class="section-level2"><span class="sec-num">23.3.1.</span> 意识的七阶：概念与结构 <span class="page-ref">248</span></div>
+        <div class="section-level2"><span class="sec-num">23.3.2.</span> 能者的四体结构：身、心、灵、神 <span class="page-ref">250</span></div>
+        <div class="section-level2"><span class="sec-num">23.3.3.</span> 定动变化合：意识演化的动力循环 <span class="page-ref">252</span></div>
+        <div class="section-level2"><span class="sec-num">23.3.4.</span> 循环的迭代：从个体到宇宙 <span class="page-ref">252</span></div>
+        <div class="section-level1"><span class="sec-num">23.4.</span> 唯吾贯通：识与结构合一 <span class="page-ref">253</span></div>
+
+        <!-- 第24章 -->
+        <div class="chapter-title"><span class="chapter-number">第24章</span> 生成数理学 <span class="page-ref">255</span></div>
+        <div class="section-level1"><span class="sec-num">24.1.</span> 引言：数的转向——从数值标记到结构标记 <span class="page-ref">255</span></div>
+        <div class="section-level1"><span class="sec-num">24.2.</span> 逻辑预设：0与1 <span class="page-ref">256</span></div>
+        <div class="section-level1"><span class="sec-num">24.3.</span> 原初生成：2与差异的诞生 <span class="page-ref">257</span></div>
+        <div class="section-level1"><span class="sec-num">24.4.</span> 区分树理论：生成过程的拓扑基础 <span class="page-ref">258</span></div>
+        <div class="section-level1"><span class="sec-num">24.5.</span> 第一个涌现：3与确定性的生成 <span class="page-ref">260</span></div>
+        <div class="section-level1"><span class="sec-num">24.6.</span> 生成素数体系：不可还原的涌现结构 <span class="page-ref">260</span></div>
+        <div class="section-level1"><span class="sec-num">24.7.</span> 两个基础生成素数：3与5 <span class="page-ref">261</span></div>
+        <div class="section-level1"><span class="sec-num">24.8.</span> 结构熵：可区分性的量化度量 <span class="page-ref">264</span></div>
+        <div class="section-level1"><span class="sec-num">24.9.</span> 结构语义学：数值相等≠结构相等 <span class="page-ref">265</span></div>
+        <div class="section-level1"><span class="sec-num">24.10.</span> 生成的公理化定义 <span class="page-ref">266</span></div>
+        <div class="section-level1"><span class="sec-num">24.11.</span> 哲学推论与跨学科对应 <span class="page-ref">266</span></div>
+        <div class="section-level1"><span class="sec-num">24.12.</span> 核心结论与未来研究方向 <span class="page-ref">267</span></div>
+        <div class="section-level1"><span class="sec-num">24.13.</span> 结语 <span class="page-ref">269</span></div>
+
+        <!-- 第25章 -->
+        <div class="chapter-title"><span class="chapter-number">第25章</span> 无限的自然 <span class="page-ref">270</span></div>
+        <div class="section-level1"><span class="sec-num">25.1.</span> 起点：作为终极预设的自然 <span class="page-ref">270</span></div>
+        <div class="section-level1"><span class="sec-num">25.2.</span> 能所结构的诞生与层级世界的展开 <span class="page-ref">270</span></div>
+        <div class="section-level1"><span class="sec-num">25.3.</span> 无主体性概念：在者、太一与法 <span class="page-ref">271</span></div>
+        <div class="section-level1"><span class="sec-num">25.4.</span> 两个指向无限性概念：梵与道 <span class="page-ref">272</span></div>
+        <div class="section-level2"><span class="sec-num">25.4.1.</span> 梵 <span class="page-ref">272</span></div>
+        <div class="section-level2"><span class="sec-num">25.4.2.</span> 道 <span class="page-ref">273</span></div>
+        <div class="section-level1"><span class="sec-num">25.5.</span> 法趋近自然：道法自然的第一层含义 <span class="page-ref">278</span></div>
+        <div class="section-level1"><span class="sec-num">25.6.</span> 法无常法：根本悖论的浮现 <span class="page-ref">278</span></div>
+        <div class="section-level1"><span class="sec-num">25.7.</span> 恒道的浮现：自然之中唯一的恒常者 <span class="page-ref">278</span></div>
+        <div class="section-level1"><span class="sec-num">25.8.</span> 恒道即自然：道法自然的第二层终极含义 <span class="page-ref">279</span></div>
+        <div class="section-level1"><span class="sec-num">25.9.</span> 核心概念层级定位总表 <span class="page-ref">280</span></div>
+
+        <hr class="soft-divider">
+
+        <!-- ==================== 尾声 & 附录 ==================== -->
+        <div class="end-section">尾&ensp;声 <span class="page-ref">282</span></div>
+        <div class="end-section">术&ensp;语&ensp;表 <span class="page-ref">284</span></div>
+        <div class="end-section">参&ensp;考&ensp;文&ensp;献 <span class="page-ref">288</span></div>
+        <div class="end-subsection">书籍 <span class="page-ref">288</span></div>
+        <div class="end-subsection">论文 <span class="page-ref">290</span></div>
+        <div class="end-section">后&ensp;记 <span class="page-ref">291</span></div>
+
+        <!-- 底部装饰 -->
+        <div class="ornament-divider" style="margin-top: 2.5rem; margin-bottom: 0;">◆</div>
+        <p style="text-align:center;font-size:0.75rem;color:var(--text-muted);letter-spacing:0.08em;margin-top:0.6rem;">
+            《生-成》· 目录全览
+        </p>
+
+    </div>
+
+</body>
+</html>
