@@ -103,6 +103,18 @@
             font-size: 1.08rem;
             color: #d0dceb;
         }
+        /* 在线预览链接样式 */
+        .preview-link {
+            display: inline-block;
+            color: #6cb6ff;
+            text-decoration: none;
+            border-bottom: 1px dashed #6cb6ff;
+            transition: all 0.3s ease;
+        }
+        .preview-link:hover {
+            color: #ffdf70;
+            border-bottom-color: #ffdf70;
+        }
         /* 收尾结语 */
         .ending-text {
             margin-top: 3rem;
@@ -191,6 +203,12 @@
         人如何生成自己
     </div>
 
+    <!-- 在线预览板块 -->
+    <h2 class="block-title">在线预览</h2>
+    <div class="topic-list">
+        <a href="book_page/page01.html" class="preview-link" target="_blank">📖 目录与全书预览</a>
+    </div>
+
     <!-- 收尾升华文案 -->
     <div class="ending-text">
         这不是一本解释世界的书<br><br>
@@ -202,7 +220,7 @@
     <footer>
         <p>© 2026 吾的世界 · 生成论哲学体系</p>
         <p>官方站点：wudeshijie.being.net.cn</p>
-           <p>作者邮箱：tang@being.net.cn</p>
+        <p>作者邮箱：tang@being.net.cn</p>
     </footer>
 </div>
 </body>
