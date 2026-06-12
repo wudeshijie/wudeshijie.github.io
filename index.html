@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>《生-成》 | 吾的世界</title>
+    <title>《生-成》｜持存、镶嵌与流变</title>
     <style>
         * {
             margin: 0;
@@ -11,123 +11,198 @@
             box-sizing: border-box;
         }
         body {
-            font-family: "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
-            background-color: #0a0e17;
-            color: #ffffff;
-            line-height: 1.8;
+            font-family: "PingFang SC", "Microsoft YaHei", sans-serif;
+            background-color: #070b14;
+            color: #e6edf7;
+            line-height: 1.9;
             min-height: 100vh;
+            padding: 3rem 1rem;
         }
-        .container {
-            max-width: 1000px;
+        .wrap {
+            max-width: 780px;
             margin: 0 auto;
-            padding: 2rem 1rem;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
+            text-align: center;
         }
-        .book-cover {
+        /* 立体书封面样式 */
+        .book-img {
             width: 100%;
-            max-width: 500px;
-            margin-bottom: 3rem;
-            border-radius: 8px;
-            box-shadow: 0 20px 60px rgba(0, 119, 255, 0.2);
-            transition: transform 0.3s ease;
+            max-width: 480px;
+            margin: 0 auto 3rem;
+            border-radius: 10px;
+            box-shadow: 0 25px 70px rgba(255, 215, 0, 0.18);
+            transition: transform 0.4s ease;
         }
-        .book-cover:hover {
-            transform: translateY(-5px);
+        .book-img:hover {
+            transform: translateY(-8px);
         }
-        .title {
-            font-size: 3rem;
+        /* 主标题 */
+        h1.main-title {
+            font-size: 3.4rem;
             font-weight: 700;
-            margin-bottom: 0.5rem;
-            text-align: center;
-            background: linear-gradient(135deg, #ffd700, #ffb700);
+            background: linear-gradient(120deg, #ffdf70, #ffb92e);
             -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
             background-clip: text;
+            color: transparent;
+            margin-bottom: 0.6rem;
         }
-        .subtitle {
-            font-size: 1.2rem;
-            color: #a0aec0;
+        .sub-headline {
+            font-size: 1.35rem;
+            color: #b8c8e0;
+            margin-bottom: 0.4rem;
+        }
+        .dash-title {
+            font-size: 1.1rem;
+            color: #94a9c7;
             margin-bottom: 3rem;
-            text-align: center;
+            letter-spacing: 1px;
         }
-        .section {
-            width: 100%;
-            max-width: 700px;
-            margin-bottom: 2.5rem;
+        /* 开篇问句大文字 */
+        .question-big {
+            font-size: 1.6rem;
+            color: #ffdd88;
+            margin: 2.5rem 0;
         }
-        .section-title {
-            font-size: 1.4rem;
-            font-weight: 600;
-            color: #4dabf7;
-            margin-bottom: 1rem;
-            padding-bottom: 0.5rem;
-            border-bottom: 1px solid #2d3748;
+        /* 正文段落通用 */
+        .text-block {
+            text-align: left;
+            font-size: 1.08rem;
+            color: #d0dceb;
+            margin-bottom: 1.8rem;
         }
-        .intro-text {
-            font-size: 1.05rem;
-            color: #e2e8f0;
-            text-align: justify;
-        }
-        .highlight {
-            color: #ffd700;
+        .emphasis {
+            color: #ffdf70;
             font-weight: 500;
         }
-        .footer {
-            margin-top: 4rem;
-            text-align: center;
-            color: #718096;
-            font-size: 0.9rem;
+        /* 板块小标题 */
+        .block-title {
+            font-size: 1.45rem;
+            color: #6cb6ff;
+            margin: 3rem 0 1.2rem;
+            text-align: left;
+            border-left: 4px solid #3b8fff;
+            padding-left: 12px;
         }
-        @media (max-width: 768px) {
-            .title {
-                font-size: 2.2rem;
+        /* 三种存在方式列表 */
+        .mode-list {
+            text-align: left;
+            margin-bottom: 2rem;
+        }
+        .mode-item {
+            margin: 1rem 0;
+            padding-left: 10px;
+        }
+        .mode-name {
+            color: #ffdf70;
+            font-size: 1.15rem;
+            font-weight: 600;
+        }
+        /* 讨论议题清单 */
+        .topic-list {
+            text-align: left;
+            line-height: 2.1;
+            font-size: 1.08rem;
+            color: #d0dceb;
+        }
+        /* 收尾结语 */
+        .ending-text {
+            margin-top: 3rem;
+            font-size: 1.15rem;
+            color: #ffdd88;
+        }
+        /* 页脚 */
+        footer {
+            margin-top: 5rem;
+            color: #7288a8;
+            font-size: 0.92rem;
+        }
+        /* 手机自适应 */
+        @media (max-width: 700px) {
+            h1.main-title {
+                font-size: 2.4rem;
             }
-            .book-cover {
-                max-width: 350px;
+            .book-img {
+                max-width: 340px;
+            }
+            .question-big {
+                font-size: 1.35rem;
             }
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <!-- 立体书封面 -->
-        <img src="book-cover.jpg" alt="《生-成》立体书封面" class="book-cover">
+<div class="wrap">
+    <!-- 立体书封面 -->
+    <img src="book-cover.jpg" alt="《生-成》实体书籍封面" class="book-img">
 
-        <!-- 书名 -->
-        <h1 class="title">《生-成》</h1>
-        <p class="subtitle">持存、镶嵌和流变：基于区分的属性逻辑过程</p>
+    <!-- 标题区 -->
+    <h1 class="main-title">《生-成》</h1>
+    <p class="sub-headline">持存、镶嵌与流变</p>
+    <p class="dash-title">——基于区分的属性逻辑过程</p>
 
-        <!-- 书籍介绍 -->
-        <div class="section">
-            <h2 class="section-title">📖 关于这本书</h2>
-            <p class="intro-text">
-                《生-成》是一套以<span class="highlight">「区分」事件为元初概念</span>构建的原创生成论哲学体系。它跳出了西方传统存在论的框架，从最底层的“区分”出发，重新定义了世界的生成方式，为理解自然、意识与人类文明提供了一套全新的底层语法。
-            </p>
+    <!-- 开篇核心提问 -->
+    <p class="question-big">世界是如何成为世界的？</p>
+
+    <!-- 第一段正文 -->
+    <div class="text-block">
+        我们习惯于研究已经存在的事物：<br>
+        物质、生命、意识、社会、文明。<br><br>
+        但更根本的问题是：<br>
+        它们为何会出现？
+    </div>
+
+    <div class="text-block">
+        《生-成》试图从最简单的<span class="emphasis">「区分事件」</span>出发，
+        建立一套关于生成的底层语法。
+    </div>
+
+    <!-- 核心观点板块 -->
+    <h2 class="block-title">核心观点</h2>
+    <div class="text-block">
+        区分是生成的基础<br>
+        持存是生成结果的筛选<br>
+        世界是属性的<br>
+        识与结构合一
+    </div>
+
+    <!-- 三种存在方式 -->
+    <h2 class="block-title">三种存在方式</h2>
+    <div class="mode-list">
+        <div class="mode-item">
+            <span class="mode-name">持存</span>
+            <p>生成结构的稳定延续</p>
         </div>
-
-        <div class="section">
-            <h2 class="section-title">✨ 核心思想</h2>
-            <p class="intro-text">
-                世界并非由固定的实体构成，而是在<span class="highlight">「空有循环」的动态区分中持续生成</span>。本书通过对「持存/镶嵌/流变」三种存在模式的系统剖析，打通了东方哲学与现代科学的底层逻辑，回应了现代性带来的精神危机与认知困境。
-            </p>
+        <div class="mode-item">
+            <span class="mode-name">镶嵌</span>
+            <p>生成结构之间的相互关联</p>
         </div>
-
-        <div class="section">
-            <h2 class="section-title">🎯 核心命题</h2>
-            <p class="intro-text">
-                • 存在即区分，区分即生成<br>
-                • 没有实体，只有过程；没有本质，只有属性<br>
-                • 意识是区分的自反性闭环<br>
-                • 文明是人类集体区分的沉淀与迭代
-            </p>
-        </div>
-
-        <div class="footer">
-            <p>© 2026 吾的世界 | 生成论哲学体系</p>
-            <p>官方网站：wudeshijie.being.net.cn</p>
+        <div class="mode-item">
+            <span class="mode-name">流变</span>
+            <p>生成结构的持续更新</p>
         </div>
     </div>
+
+    <!-- 全书讨论范畴 -->
+    <h2 class="block-title">这本书讨论什么？</h2>
+    <div class="topic-list">
+        世界如何生成<br>
+        意识如何生成<br>
+        AI如何可能<br>
+        文明如何演化<br>
+        人如何生成自己
+    </div>
+
+    <!-- 收尾升华文案 -->
+    <div class="ending-text">
+        这不是一本解释世界的书<br><br>
+        它试图回答：<br>
+        为什么会有一个能够解释世界的我们。
+    </div>
+
+    <!-- 页脚 -->
+    <footer>
+        <p>© 2026 吾的世界 · 生成论哲学体系</p>
+        <p>官方站点：wudeshijie.being.net.cn</p>
+    </footer>
+</div>
 </body>
 </html>
