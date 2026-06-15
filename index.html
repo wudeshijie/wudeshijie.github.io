@@ -39,14 +39,14 @@
             z-index: 0;
         }
 
-        /* 金色圆环装饰，呼应封面核心图形 */
+        /* 金色圆环装饰：上移位置，完整包裹标题区 */
         .ring-decor {
             position: absolute;
-            top: 120px;
+            top: 40px;
             left: 50%;
             transform: translateX(-50%);
-            width: 520px;
-            height: 520px;
+            width: 560px;
+            height: 560px;
             border: 1px solid rgba(255, 205, 90, 0.15);
             border-radius: 50%;
             box-shadow: 0 0 60px rgba(255, 190, 60, 0.08) inset;
@@ -60,25 +60,6 @@
             text-align: center;
             position: relative;
             z-index: 1;
-        }
-
-        /* 立体书封面样式，匹配封面发光质感 */
-        .book-img {
-            width: 100%;
-            max-width: 460px;
-            margin: 0 auto 3.5rem;
-            border-radius: 6px;
-            box-shadow: 
-                0 20px 60px rgba(0, 0, 0, 0.6),
-                0 0 40px rgba(255, 190, 60, 0.12);
-            transition: transform 0.5s ease, box-shadow 0.5s ease;
-        }
-
-        .book-img:hover {
-            transform: translateY(-10px);
-            box-shadow: 
-                0 30px 80px rgba(0, 0, 0, 0.7),
-                0 0 60px rgba(255, 190, 60, 0.18);
         }
 
         /* 主标题 - 鎏金渐变，呼应封面书名 */
@@ -187,7 +168,37 @@
             font-weight: 300;
         }
 
-        /* 在线预览链接样式 */
+        /* 在线预览 - 纵向排列布局 */
+        .preview-group {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 2rem;
+            margin-top: 1rem;
+        }
+
+        .preview-card {
+            text-align: center;
+            width: 100%;
+            max-width: 320px;
+            transition: transform 0.4s ease;
+            text-decoration: none;
+            display: block;
+        }
+
+        .preview-card:hover {
+            transform: translateY(-6px);
+        }
+
+        .preview-cover {
+            width: 100%;
+            border-radius: 6px;
+            box-shadow: 
+                0 15px 40px rgba(0, 0, 0, 0.5),
+                0 0 30px rgba(255, 190, 60, 0.1);
+            margin-bottom: 0.8rem;
+        }
+
         .preview-link {
             display: inline-block;
             color: #ffd76a;
@@ -195,12 +206,20 @@
             border-bottom: 1px dashed rgba(255, 215, 106, 0.5);
             transition: all 0.3s ease;
             padding-bottom: 2px;
+            font-size: 1.05rem;
+            line-height: 1.8;
         }
 
-        .preview-link:hover {
+        .preview-card:hover .preview-link {
             color: #fff0b0;
             border-bottom-color: #fff0b0;
             text-shadow: 0 0 10px rgba(255, 215, 106, 0.4);
+        }
+
+        .preview-label {
+            font-size: 0.9rem;
+            color: #7d93b3;
+            margin-top: 0.4rem;
         }
 
         /* 收尾结语 */
@@ -234,24 +253,20 @@
                 letter-spacing: 0.2rem;
             }
 
-            .book-img {
-                max-width: 320px;
-            }
-
             .question-big {
                 font-size: 1.4rem;
             }
 
             .ring-decor {
-                width: 360px;
-                height: 360px;
-                top: 80px;
+                width: 380px;
+                height: 380px;
+                top: 50px;
             }
         }
     </style>
 </head>
 <body>
-    <!-- 背景圆环装饰，呼应封面核心视觉 -->
+    <!-- 背景圆环装饰，完整包裹标题区 -->
     <div class="ring-decor"></div>
 
 <div class="wrap">
@@ -263,9 +278,6 @@
 
     <!-- 开篇核心提问 -->
     <p class="question-big">世界是如何成为世界的？</p>
-    
-    <!-- 立体书封面 -->
-    <img src="book-cover.jpg" alt="《生-成》实体书籍封面" class="book-img">
     
     <!-- 第一段正文 -->
     <div class="text-block">
@@ -335,17 +347,33 @@
         人如何生成自己
     </div>
 
-    <!-- 在线预览板块 -->
+    <!-- 在线预览板块：纵向排列两个链接 -->
+    <h2 class="block-title">在线预览</h2>
+    <div class="preview-group">
+        <a href="book-cover.jpg" target="_blank" class="preview-card">
+            <img src="book-cover.jpg" alt="实体书封面" class="preview-cover">
+            <div class="preview-link">📖 实体书封面</div>
+            <div class="preview-label">点击查看大图</div>
+        </a>
+        <a href="book_page/page01.html" target="_blank" class="preview-card">
+            <div class="preview-link">📖 《生-成》目录</div>
+            <div class="preview-label">点击查看全书目录</div>
+        </a>
+    </div>
+    
+ <!-- 在线预览板块 -->
     <h2 class="block-title">在线预览</h2>
     <div class="topic-list">
+        <a href="book-cover.jpg" class="preview-link" target="_blank">📖 《生-成》封面</a>
         <a href="book_page/page01.html" class="preview-link" target="_blank">📖 《生-成》目录</a>
     </div>
 
+    
     <!-- 收尾升华文案 -->
     <div class="ending-text">
         这不是一本解释世界的书<br><br>
         它试图回答：<br>
-        如何在无限不确定的背景中，生成有限的确定性？
+        如何在无限不确定的背景中，生成有限的确定性！
     </div>
 
     <!-- 页脚 -->
@@ -357,3 +385,6 @@
 </div>
 </body>
 </html>
+
+
+   
