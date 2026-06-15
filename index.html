@@ -39,14 +39,14 @@
             z-index: 0;
         }
 
-        /* 金色圆环装饰：上移位置，完整包裹标题区 */
+        /* 金色圆环装饰：上半部分溢出页面，仅包裹标题区，底部不覆盖正文 */
         .ring-decor {
             position: absolute;
-            top: 40px;
+            top: -140px;
             left: 50%;
             transform: translateX(-50%);
-            width: 560px;
-            height: 560px;
+            width: 600px;
+            height: 600px;
             border: 1px solid rgba(255, 205, 90, 0.15);
             border-radius: 50%;
             box-shadow: 0 0 60px rgba(255, 190, 60, 0.08) inset;
@@ -62,7 +62,7 @@
             z-index: 1;
         }
 
-        /* 主标题 - 鎏金渐变，呼应封面书名 */
+        /* 主标题：增加上边距，整体下移，在圆环内视觉居中 */
         h1.main-title {
             font-size: 3.6rem;
             font-weight: 700;
@@ -71,6 +71,7 @@
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
+            margin-top: 2rem;
             margin-bottom: 0.8rem;
             text-shadow: 0 0 30px rgba(255, 200, 80, 0.15);
         }
@@ -86,7 +87,7 @@
         .dash-title {
             font-size: 1rem;
             color: #6e85a6;
-            margin-bottom: 3.5rem;
+            margin-bottom: 2rem;
             letter-spacing: 2px;
             position: relative;
         }
@@ -106,11 +107,12 @@
             background: linear-gradient(90deg, rgba(255,200,80,0.4), transparent);
         }
 
-        /* 开篇问句大文字 */
+        /* 开篇问句：增加上边距，完全落在圆环之外 */
         .question-big {
             font-size: 1.7rem;
             color: #ffe499;
-            margin: 3rem 0;
+            margin-top: 10rem;
+            margin-bottom: 3rem;
             font-weight: 300;
             letter-spacing: 1px;
         }
@@ -190,15 +192,6 @@
             transform: translateY(-6px);
         }
 
-        .preview-cover {
-            width: 100%;
-            border-radius: 6px;
-            box-shadow: 
-                0 15px 40px rgba(0, 0, 0, 0.5),
-                0 0 30px rgba(255, 190, 60, 0.1);
-            margin-bottom: 0.8rem;
-        }
-
         .preview-link {
             display: inline-block;
             color: #ffd76a;
@@ -251,28 +244,29 @@
             h1.main-title {
                 font-size: 2.6rem;
                 letter-spacing: 0.2rem;
+                margin-top: 3.5rem;
             }
 
             .question-big {
                 font-size: 1.4rem;
+                margin-top: 7rem;
             }
 
             .ring-decor {
-                width: 380px;
-                height: 380px;
-                top: 50px;
+                width: 420px;
+                height: 420px;
+                top: -100px;
             }
         }
     </style>
 </head>
 <body>
-    <!-- 背景圆环装饰，完整包裹标题区 -->
+    <!-- 背景圆环装饰 -->
     <div class="ring-decor"></div>
 
 <div class="wrap">
 
     <!-- 标题区 -->
-    <h1 class="main-title"> </h1>
     <h1 class="main-title">《生-成》</h1>
     <p class="sub-headline">基于区分的属性逻辑过程</p>
     <p class="dash-title">ATTRIBUTIVE LOGICAL PROCESS</p>
@@ -378,6 +372,3 @@
 </div>
 </body>
 </html>
-
-
-   
