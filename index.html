@@ -39,7 +39,7 @@
             z-index: 0;
         }
 
-        /* 金色圆环装饰：完整正圆，包裹全部标题 */
+        /* 金色圆环装饰：完整正圆，中文副标题处于圆心位置 */
         .ring-decor {
             position: absolute;
             top: 3rem;
@@ -62,7 +62,7 @@
             z-index: 1;
         }
 
-        /* 主标题 - 鎏金渐变，在圆环内垂直居中 */
+        /* 主标题 - 鎏金渐变，位置上移 */
         h1.main-title {
             font-size: 3.6rem;
             font-weight: 700;
@@ -71,29 +71,24 @@
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
-            margin-top: 9rem;
-            margin-bottom: 0.8rem;
+            margin-top: 5.5rem;
+            margin-bottom: 1.8rem;
             text-shadow: 0 0 30px rgba(255, 200, 80, 0.15);
         }
 
+        /* 中文副标题：处于圆环中心，两侧带金色装饰线 */
         .sub-headline {
             font-size: 1.3rem;
             color: #a9bdd8;
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.8rem;
             font-weight: 300;
             letter-spacing: 1px;
-        }
-
-        .dash-title {
-            font-size: 1rem;
-            color: #6e85a6;
-            margin-bottom: 3rem;
-            letter-spacing: 2px;
             position: relative;
+            display: inline-block;
         }
 
-        .dash-title::before,
-        .dash-title::after {
+        .sub-headline::before,
+        .sub-headline::after {
             content: "";
             display: inline-block;
             width: 40px;
@@ -103,15 +98,24 @@
             margin: 0 12px;
         }
 
-        .dash-title::after {
+        .sub-headline::after {
             background: linear-gradient(90deg, rgba(255,200,80,0.4), transparent);
+        }
+
+        /* 英文标题：字号缩小，去掉装饰线 */
+        .dash-title {
+            font-size: 0.85rem;
+            color: #6e85a6;
+            margin-bottom: 3rem;
+            letter-spacing: 2px;
+            position: relative;
         }
 
         /* 开篇问句大文字：完全落在圆环之外 */
         .question-big {
             font-size: 1.7rem;
             color: #ffe499;
-            margin: 11rem 0 3rem 0;
+            margin: 10rem 0 3rem 0;
             font-weight: 300;
             letter-spacing: 1px;
         }
@@ -244,12 +248,22 @@
             h1.main-title {
                 font-size: 2.6rem;
                 letter-spacing: 0.2rem;
-                margin-top: 6rem;
+                margin-top: 4rem;
+            }
+
+            .sub-headline {
+                font-size: 1.1rem;
+            }
+
+            .sub-headline::before,
+            .sub-headline::after {
+                width: 24px;
+                margin: 0 8px;
             }
 
             .question-big {
                 font-size: 1.4rem;
-                margin: 8rem 0 3rem 0;
+                margin: 7rem 0 3rem 0;
             }
 
             .ring-decor {
@@ -364,7 +378,8 @@
     <div class="ending-text">
         这不是一本解释世界的书<br><br>
         它试图回答：<br>
-        如何在无限不确定的背景中，生成有限的确定性！
+        如何在无限不确定的背景中，<br>
+        持续生成有限的确定性！
     </div>
 
     <!-- 页脚 -->
