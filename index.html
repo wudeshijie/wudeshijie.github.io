@@ -39,18 +39,17 @@
             z-index: 0;
         }
 
-        /* 金色圆环：更粗、更亮、光晕更强，视觉更突出 */
+        /* 金色圆环：恢复你原来的尺寸，只增强金色效果 */
         .ring-decor {
             position: absolute;
-            top: 2rem;
+            top: 3rem;
             left: 50%;
             transform: translateX(-50%);
-            width: 620px;
-            height: 620px;
-            border: 2.5px solid rgba(255, 205, 90, 0.35);
+            width: 540px;   /* 恢复原始尺寸 */
+            height: 540px;  /* 恢复原始尺寸 */
+            border: 2px solid rgba(255, 205, 90, 0.3);
             border-radius: 50%;
-            box-shadow: 0 0 100px rgba(255, 190, 60, 0.25) inset,
-                        0 0 40px rgba(255, 190, 60, 0.15);
+            box-shadow: 0 0 70px rgba(255, 190, 60, 0.18) inset;
             z-index: 0;
             pointer-events: none;
         }
@@ -63,44 +62,45 @@
             z-index: 1;
         }
 
-        /* 主标题：超级放大，鎏金更强 */
+        /* 主标题：继续放大，更醒目 */
         h1.main-title {
-            font-size: 5.2rem;
+            font-size: 4.8rem;
             font-weight: 700;
-            letter-spacing: 0.4rem;
+            letter-spacing: 0.3rem;
             background: linear-gradient(135deg, #fff0b0 0%, #ffd257 50%, #e6a830 100%);
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
-            margin-top: 6.5rem;
+            margin-top: 6rem;
             margin-bottom: 1.8rem;
-            text-shadow: 0 0 40px rgba(255, 200, 80, 0.25);
+            text-shadow: 0 0 35px rgba(255, 200, 80, 0.2);
         }
 
-        /* 副标题：金线大幅拉长 → 视觉切割圆环上下 */
+        /* 副标题：严格在圆内，不换行，金线适配 */
         .sub-headline {
-            font-size: 1.55rem;
+            font-size: 1.45rem;
             color: #a9bdd8;
             margin-bottom: 0.9rem;
             font-weight: 300;
             letter-spacing: 1px;
             position: relative;
             display: inline-block;
+            white-space: nowrap; /* 强制不换行 */
         }
 
         .sub-headline::before,
         .sub-headline::after {
             content: "";
             display: inline-block;
-            width: 110px; /* 金线拉长，与圆环连接 */
+            width: 80px;  /* 适配圆环，不超出 */
             height: 1.5px;
-            background: linear-gradient(90deg, transparent, rgba(255,200,80,0.65));
+            background: linear-gradient(90deg, transparent, rgba(255,200,80,0.6));
             vertical-align: middle;
-            margin: 0 20px;
+            margin: 0 16px;
         }
 
         .sub-headline::after {
-            background: linear-gradient(90deg, rgba(255,200,80,0.65), transparent);
+            background: linear-gradient(90deg, rgba(255,200,80,0.6), transparent);
         }
 
         /* 英文标题 */
@@ -112,11 +112,11 @@
             position: relative;
         }
 
-        /* 开篇问句：确保在圆环正下方 */
+        /* 开篇问句：在圆环正下方 */
         .question-big {
             font-size: 1.7rem;
             color: #ffe499;
-            margin: 15rem 0 3rem 0;
+            margin: 13rem 0 3rem 0;
             font-weight: 300;
             letter-spacing: 1px;
         }
@@ -240,38 +240,37 @@
             padding-top: 2rem;
         }
 
-        /* 手机自适应 */
+        /* 手机自适应：圆环不放大，完美显示 */
         @media (max-width: 700px) {
             body {
                 padding: 2.5rem 1rem;
             }
 
             h1.main-title {
-                font-size: 3.4rem;
+                font-size: 3.2rem;
                 letter-spacing: 0.25rem;
-                margin-top: 5rem;
+                margin-top: 4.5rem;
             }
 
             .sub-headline {
-                font-size: 1.3rem;
+                font-size: 1.25rem;
             }
 
             .sub-headline::before,
             .sub-headline::after {
-                width: 60px;
-                margin: 0 12px;
+                width: 45px;
+                margin: 0 10px;
             }
 
             .question-big {
                 font-size: 1.4rem;
-                margin: 11rem 0 3rem 0;
+                margin: 10rem 0 3rem 0;
             }
 
             .ring-decor {
-                width: 420px;
-                height: 420px;
+                width: 380px;   /* 手机端保持原有尺寸，不溢出 */
+                height: 380px;
                 top: 2rem;
-                border: 2.5px solid rgba(255, 205, 90, 0.35);
             }
 
             .preview-group {
@@ -315,7 +314,7 @@
     
     <h2 class="block-title">三大属性：</h2>
     <div class="text-block">
-        破缺-平衡<br>      
+       破缺-平衡<br>      
         分化-耦合<br>
         代偿-存在<br>        
     </div>
