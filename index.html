@@ -39,17 +39,18 @@
             z-index: 0;
         }
 
-        /* 金色圆环装饰：完整正圆，中文副标题处于圆心位置 */
+        /* 金色圆环：更粗、更亮、光晕更强，视觉更突出 */
         .ring-decor {
             position: absolute;
-            top: 3rem;
+            top: 2rem;
             left: 50%;
             transform: translateX(-50%);
-            width: 540px;
-            height: 540px;
-            border: 1px solid rgba(255, 205, 90, 0.15);
+            width: 620px;
+            height: 620px;
+            border: 2.5px solid rgba(255, 205, 90, 0.35);
             border-radius: 50%;
-            box-shadow: 0 0 60px rgba(255, 190, 60, 0.08) inset;
+            box-shadow: 0 0 100px rgba(255, 190, 60, 0.25) inset,
+                        0 0 40px rgba(255, 190, 60, 0.15);
             z-index: 0;
             pointer-events: none;
         }
@@ -62,25 +63,25 @@
             z-index: 1;
         }
 
-        /* 主标题 - 鎏金渐变，位置上移 */
+        /* 主标题：超级放大，鎏金更强 */
         h1.main-title {
-            font-size: 3.6rem;
+            font-size: 5.2rem;
             font-weight: 700;
-            letter-spacing: 0.3rem;
+            letter-spacing: 0.4rem;
             background: linear-gradient(135deg, #fff0b0 0%, #ffd257 50%, #e6a830 100%);
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
-            margin-top: 5.5rem;
+            margin-top: 6.5rem;
             margin-bottom: 1.8rem;
-            text-shadow: 0 0 30px rgba(255, 200, 80, 0.15);
+            text-shadow: 0 0 40px rgba(255, 200, 80, 0.25);
         }
 
-        /* 中文副标题：处于圆环中心，两侧带金色装饰线 */
+        /* 副标题：金线大幅拉长 → 视觉切割圆环上下 */
         .sub-headline {
-            font-size: 1.3rem;
+            font-size: 1.55rem;
             color: #a9bdd8;
-            margin-bottom: 0.8rem;
+            margin-bottom: 0.9rem;
             font-weight: 300;
             letter-spacing: 1px;
             position: relative;
@@ -91,18 +92,18 @@
         .sub-headline::after {
             content: "";
             display: inline-block;
-            width: 40px;
-            height: 1px;
-            background: linear-gradient(90deg, transparent, rgba(255,200,80,0.4));
+            width: 110px; /* 金线拉长，与圆环连接 */
+            height: 1.5px;
+            background: linear-gradient(90deg, transparent, rgba(255,200,80,0.65));
             vertical-align: middle;
-            margin: 0 12px;
+            margin: 0 20px;
         }
 
         .sub-headline::after {
-            background: linear-gradient(90deg, rgba(255,200,80,0.4), transparent);
+            background: linear-gradient(90deg, rgba(255,200,80,0.65), transparent);
         }
 
-        /* 英文标题：字号缩小，去掉装饰线 */
+        /* 英文标题 */
         .dash-title {
             font-size: 0.85rem;
             color: #6e85a6;
@@ -111,11 +112,11 @@
             position: relative;
         }
 
-        /* 开篇问句大文字：完全落在圆环之外 */
+        /* 开篇问句：确保在圆环正下方 */
         .question-big {
             font-size: 1.7rem;
             color: #ffe499;
-            margin: 10rem 0 3rem 0;
+            margin: 15rem 0 3rem 0;
             font-weight: 300;
             letter-spacing: 1px;
         }
@@ -134,7 +135,7 @@
             font-weight: 500;
         }
 
-        /* 板块小标题 - 左侧金线装饰 */
+        /* 板块小标题 */
         .block-title {
             font-size: 1.4rem;
             color: #ffd76a;
@@ -173,7 +174,7 @@
             font-weight: 300;
         }
 
-        /* 在线预览 - 纵向靠左排列布局 */
+        /* 在线预览 */
         .preview-group {
             display: flex;
             flex-direction: column;
@@ -246,30 +247,31 @@
             }
 
             h1.main-title {
-                font-size: 2.6rem;
-                letter-spacing: 0.2rem;
-                margin-top: 4rem;
+                font-size: 3.4rem;
+                letter-spacing: 0.25rem;
+                margin-top: 5rem;
             }
 
             .sub-headline {
-                font-size: 1.1rem;
+                font-size: 1.3rem;
             }
 
             .sub-headline::before,
             .sub-headline::after {
-                width: 24px;
-                margin: 0 8px;
+                width: 60px;
+                margin: 0 12px;
             }
 
             .question-big {
                 font-size: 1.4rem;
-                margin: 7rem 0 3rem 0;
+                margin: 11rem 0 3rem 0;
             }
 
             .ring-decor {
-                width: 380px;
-                height: 380px;
+                width: 420px;
+                height: 420px;
                 top: 2rem;
+                border: 2.5px solid rgba(255, 205, 90, 0.35);
             }
 
             .preview-group {
@@ -279,20 +281,15 @@
     </style>
 </head>
 <body>
-    <!-- 背景圆环装饰：完整正圆包裹标题 -->
     <div class="ring-decor"></div>
-
 <div class="wrap">
 
-    <!-- 标题区 -->
     <h1 class="main-title">《生-成》</h1>
     <p class="sub-headline">基于区分的属性逻辑过程</p>
     <p class="dash-title">ATTRIBUTIVE LOGICAL PROCESS</p>
 
-    <!-- 开篇核心提问 -->
     <p class="question-big">世界是如何成为世界的？</p>
     
-    <!-- 第一段正文 -->
     <div class="text-block">
         我们习惯于研究已经存在的事物：<br>
         物质、生命、意识、社会、文明。<br><br>
@@ -305,7 +302,6 @@
         建立一套关于生成的底层语法。
     </div>
 
-    <!-- 核心观点板块 -->
     <h2 class="block-title">核心观点：</h2>
     <div class="text-block">
         区分先于生成<br>      
@@ -317,7 +313,6 @@
         识与结构合一<br>        
     </div>
     
-    <!-- 三大属性板块 -->
     <h2 class="block-title">三大属性：</h2>
     <div class="text-block">
         破缺-平衡<br>      
@@ -325,7 +320,6 @@
         代偿-存在<br>        
     </div>
     
-    <!-- 三重生成序列 -->
     <h2 class="block-title">三重生成序列：</h2>
     <div class="text-block">
         正向生成序列<br>      
@@ -333,7 +327,6 @@
         双向空有循环<br>        
     </div>
 
-    <!-- 三种存在方式 -->
     <h2 class="block-title">三种存在方式</h2>
     <div class="mode-list">
         <div class="mode-item">
@@ -350,7 +343,6 @@
         </div>
     </div>
 
-    <!-- 全书讨论范畴 -->
     <h2 class="block-title">这本书讨论什么？</h2>
     <div class="topic-list">
         世界如何生成<br>
@@ -360,7 +352,6 @@
         人如何生成自己
     </div>
 
-    <!-- 在线预览板块：纵向靠左排列两个链接 -->
     <h2 class="block-title">在线预览</h2>
     <div class="preview-group">
         <a href="book-cover.jpg" target="_blank" class="preview-card">
@@ -374,7 +365,6 @@
     </div>
     
 
-    <!-- 收尾升华文案 -->
     <div class="ending-text">
         这不是一本解释世界的书<br><br>
         它试图回答：<br>
@@ -382,7 +372,6 @@
         持续生成有限的确定性！
     </div>
 
-    <!-- 页脚 -->
     <footer>
         <p>登 记 号： 国作登字-2026-A-00138904</p>
         <p>官方站点：wudeshijie.being.net.cn</p>
