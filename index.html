@@ -289,14 +289,171 @@
 
     <p class="question-big">世界是如何成为世界的？</p>
     
-    <div class="text-block">
-        我们研究物质、生命、意识、社会与AI，<br>
-        却很少追问：<br>
-        它们如何生成？<br>
-        《生-成》从一个最简单的「区分」开始。<br>
-        在无限不确定中，<br>
-        持续生成有限的确定性。<br>
+```html
+<!-- 《生-成》首页核心文案 -->
+<section class="shengcheng-intro">
+  <div class="shengcheng-intro-inner">
+
+    <h1>世界是如何成为世界的？</h1>
+
+    <div class="shengcheng-question">
+      <p>我们习惯研究已经存在的事物：</p>
+
+      <p class="shengcheng-subjects">
+        <span>物质</span>
+        <span>生命</span>
+        <span>意识</span>
+        <span>社会</span>
+        <span>AI</span>
+      </p>
+
+      <p>却很少追问：</p>
+
+      <p class="shengcheng-emphasis">它们如何生成？</p>
     </div>
+
+    <div class="shengcheng-book">
+      <p>
+        《生-成》从一个最简单的
+        <span class="shengcheng-mark">「区分」</span>
+        开始。
+      </p>
+    </div>
+
+
+
+<style>
+/* ================================
+   《生-成》首页核心文案
+   独立样式，不影响网站其他部分
+   ================================ */
+
+.shengcheng-intro {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 110px 24px 120px;
+  background: #000;
+  color: #fff;
+}
+
+.shengcheng-intro-inner {
+  width: min(900px, 100%);
+  margin: 0 auto;
+  text-align: center;
+}
+
+/* 主标题 */
+.shengcheng-intro h1 {
+  margin: 0 0 58px;
+  font-size: clamp(32px, 5vw, 58px);
+  font-weight: 300;
+  letter-spacing: 0.08em;
+  line-height: 1.35;
+}
+
+/* 问题部分 */
+.shengcheng-question {
+  font-size: clamp(16px, 2vw, 20px);
+  line-height: 2;
+  color: rgba(255,255,255,0.78);
+}
+
+.shengcheng-question p {
+  margin: 0;
+}
+
+/* 物质、生命、意识…… */
+.shengcheng-subjects {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 0.8em;
+  margin: 18px 0 22px !important;
+  color: rgba(255,255,255,0.92);
+  letter-spacing: 0.08em;
+}
+
+.shengcheng-subjects span::after {
+  content: " ·";
+  color: rgba(255,255,255,0.35);
+}
+
+.shengcheng-subjects span:last-child::after {
+  content: "";
+}
+
+/* “它们如何生成？” */
+.shengcheng-emphasis {
+  margin-top: 18px !important;
+  font-size: clamp(21px, 3vw, 30px);
+  color: #fff;
+  letter-spacing: 0.08em;
+}
+
+/* 《生-成》 */
+.shengcheng-book {
+  margin-top: 72px;
+  font-size: clamp(17px, 2.2vw, 22px);
+  line-height: 2;
+  color: rgba(255,255,255,0.88);
+}
+
+.shengcheng-mark {
+  display: inline-block;
+  margin: 0 0.15em;
+  color: #d6bd82;
+  letter-spacing: 0.08em;
+}
+
+/* 最后的核心命题 */
+.shengcheng-ending {
+  margin-top: 72px;
+  padding-top: 42px;
+  border-top: 1px solid rgba(255,255,255,0.14);
+
+  font-size: clamp(20px, 3vw, 30px);
+  line-height: 1.9;
+  letter-spacing: 0.08em;
+}
+
+.shengcheng-ending p {
+  margin: 0;
+}
+
+.shengcheng-ending p:last-child {
+  color: #d6bd82;
+  font-weight: 300;
+}
+
+/* 手机端 */
+@media (max-width: 600px) {
+
+  .shengcheng-intro {
+    padding: 78px 22px 88px;
+  }
+
+  .shengcheng-intro h1 {
+    margin-bottom: 42px;
+    letter-spacing: 0.05em;
+  }
+
+  .shengcheng-subjects {
+    gap: 0.45em;
+    line-height: 1.8;
+  }
+
+  .shengcheng-book {
+    margin-top: 55px;
+  }
+
+  .shengcheng-ending {
+    margin-top: 55px;
+    padding-top: 32px;
+  }
+}
+</style>
+
+
     
     <h2 class="block-title">核心观点：</h2>
     <div class="text-block">
