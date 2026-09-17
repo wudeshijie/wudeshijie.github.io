@@ -22,7 +22,7 @@
             overflow-x: hidden;
         }
 
-        /* 背景星点装饰，呼应封面星空 */
+        /* 背景星点装饰 */
         body::before {
             content: "";
             position: fixed;
@@ -30,7 +30,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background-image: 
+            background-image:
                 radial-gradient(2px 2px at 20% 30%, rgba(255,223,112,0.6), transparent),
                 radial-gradient(1px 1px at 60% 70%, rgba(255,255,255,0.4), transparent),
                 radial-gradient(1.5px 1.5px at 80% 20%, rgba(108,182,255,0.5), transparent),
@@ -39,14 +39,15 @@
             z-index: 0;
         }
 
-        /* 金色圆环：恢复你原来的尺寸，只增强金色效果 */
+        /* 金色圆环 */
         .ring-decor {
             position: absolute;
             top: 3rem;
             left: 50%;
             transform: translateX(-50%);
-            width: 540px;   /* 恢复原始尺寸 */
-            height: 540px;  /* 恢复原始尺寸 */
+            width: 540px;
+            max-width: 92vw;      /* 小屏不溢出 */
+            height: 540px;
             border: 2px solid rgba(255, 205, 90, 0.3);
             border-radius: 50%;
             box-shadow: 0 0 70px rgba(255, 190, 60, 0.18) inset;
@@ -62,7 +63,7 @@
             z-index: 1;
         }
 
-        /* 主标题：继续放大，更醒目 */
+        /* 主标题 */
         h1.main-title {
             font-size: 4.8rem;
             font-weight: 700;
@@ -76,7 +77,7 @@
             text-shadow: 0 0 35px rgba(255, 200, 80, 0.2);
         }
 
-        /* 副标题：严格在圆内，不换行，金线适配 */
+        /* 副标题 */
         .sub-headline {
             font-size: 1.45rem;
             color: #a9bdd8;
@@ -85,14 +86,14 @@
             letter-spacing: 1px;
             position: relative;
             display: inline-block;
-            white-space: nowrap; /* 强制不换行 */
+            white-space: nowrap;
         }
 
         .sub-headline::before,
         .sub-headline::after {
             content: "";
             display: inline-block;
-            width: 80px;  /* 适配圆环，不超出 */
+            width: 80px;
             height: 1.5px;
             background: linear-gradient(90deg, transparent, rgba(255,200,80,0.6));
             vertical-align: middle;
@@ -103,7 +104,6 @@
             background: linear-gradient(90deg, rgba(255,200,80,0.6), transparent);
         }
 
-        /* 英文标题 */
         .dash-title {
             font-size: 0.85rem;
             color: #6e85a6;
@@ -112,7 +112,6 @@
             position: relative;
         }
 
-        /* 开篇问句：在圆环正下方 */
         .question-big {
             font-size: 1.7rem;
             color: #ffe499;
@@ -121,13 +120,14 @@
             letter-spacing: 1px;
         }
 
-        /* 正文段落通用 */
+        /* 正文段落 */
         .text-block {
             text-align: left;
             font-size: 1.08rem;
             color: #c8d6e9;
             margin-bottom: 2rem;
             font-weight: 300;
+            line-height: 1.95;
         }
 
         .emphasis {
@@ -139,7 +139,7 @@
         .block-title {
             font-size: 1.4rem;
             color: #ffd76a;
-            margin: 3.5rem 0 1.2rem;
+            margin: 3.2rem 0 1rem;
             text-align: left;
             border-left: 3px solid #d4a84b;
             padding-left: 14px;
@@ -147,50 +147,27 @@
             letter-spacing: 1px;
         }
 
-        /* 三种存在方式列表 */
-        .mode-list {
-            text-align: left;
-            margin-bottom: 2rem;
-        }
-
-        .mode-item {
-            margin: 1.2rem 0;
-            padding-left: 10px;
-        }
-
-        .mode-name {
-            color: #ffd76a;
-            font-size: 1.15rem;
-            font-weight: 500;
-            letter-spacing: 1px;
-        }
-
-        /* 讨论议题清单 */
-        .topic-list {
-            text-align: left;
-            line-height: 2.2;
-            font-size: 1.08rem;
-            color: #c8d6e9;
-            font-weight: 300;
-        }
-
-        /* 在线预览 */
+        /* 在线预览 / 衍生著作 / 相关论文 通用容器 */
         .preview-group {
             display: flex;
             flex-direction: column;
             align-items: flex-start;
-            gap: 2rem;
-            margin-top: 1rem;
+            gap: 1.5rem;           /* 原来 2rem，收紧 */
+            margin-top: 0.4rem;
             padding-left: 10px;
         }
 
         .preview-card {
             text-align: left;
             width: 100%;
-            max-width: 320px;
+            max-width: 340px;
             transition: transform 0.4s ease;
             text-decoration: none;
             display: block;
+        }
+
+        .preview-card.wide {
+            max-width: 100%;       /* 衍生著作那张卡放宽 */
         }
 
         .preview-card:hover {
@@ -205,7 +182,7 @@
             transition: all 0.3s ease;
             padding-bottom: 2px;
             font-size: 1.05rem;
-            line-height: 1.8;
+            line-height: 1.7;      /* 原来 1.8，收紧 */
         }
 
         .preview-card:hover .preview-link {
@@ -217,7 +194,17 @@
         .preview-label {
             font-size: 0.9rem;
             color: #7d93b3;
-            margin-top: 0.4rem;
+            margin-top: 0.35rem;
+            line-height: 1.7;      /* 明确行高，避免忽宽忽窄 */
+        }
+
+        /* 衍生著作里的书目清单 */
+        .book-list {
+            font-size: 1rem;
+            color: #c8d6e9;
+            font-weight: 300;
+            line-height: 1.9;
+            margin: 0.6rem 0 0.5rem;
         }
 
         /* 收尾结语 */
@@ -232,7 +219,7 @@
 
         /* 页脚 */
         footer {
-            margin-top: 5.5rem;
+            margin-top: 5rem;
             color: #5e7392;
             font-size: 0.9rem;
             line-height: 2;
@@ -240,7 +227,28 @@
             padding-top: 2rem;
         }
 
-        /* 手机自适应：圆环不放大，完美显示 */
+        footer p {
+            margin: 0.15rem 0;
+        }
+
+        .footer-label {
+            color: #6e85a6;
+            margin-right: 0.45rem;
+        }
+
+        footer a.footer-link {
+            color: #a9bdd8;
+            text-decoration: none;
+            border-bottom: 1px dashed rgba(169, 189, 216, 0.35);
+            transition: color 0.3s ease, border-color 0.3s ease;
+        }
+
+        footer a.footer-link:hover {
+            color: #ffd76a;
+            border-bottom-color: rgba(255, 215, 106, 0.7);
+        }
+
+        /* 手机自适应 */
         @media (max-width: 700px) {
             body {
                 padding: 2.5rem 1rem;
@@ -268,128 +276,134 @@
             }
 
             .ring-decor {
-                width: 380px;   /* 手机端保持原有尺寸，不溢出 */
+                width: 380px;
                 height: 380px;
                 top: 2rem;
             }
 
             .preview-group {
                 padding-left: 0;
+                gap: 1.3rem;
+            }
+
+            footer {
+                font-size: 0.85rem;
             }
         }
     </style>
 </head>
 <body>
     <div class="ring-decor"></div>
-<div class="wrap">
+    <div class="wrap">
 
-    <h1 class="main-title">《生-成》</h1>
-    <p class="sub-headline">基于区分的属性逻辑过程</p>
-    <p class="dash-title">ATTRIBUTIVE LOGICAL PROCESS</p>
+        <h1 class="main-title">《生-成》</h1>
+        <p class="sub-headline">基于区分的属性逻辑过程</p>
+        <p class="dash-title">ATTRIBUTIVE LOGICAL PROCESS</p>
 
-    <p class="question-big">世界是如何成为世界的？</p>
-    
-    <div class="text-block">
-        我们习惯于研究已经存在的事物：<br>
-        物质、生命、精神、社会、AI...<br><br>
-        但更根本的问题是：<br>
-        它们，究竟如何从无到有？<br>
-    </div>  
-    
-    <div class="text-block">
-        《生-成》从最元初、最简单的<span class="emphasis">「区分」</span>出发，<br>
-        探索时空、世界、意识、生命与文明的生成逻辑。<br>       
-    </div>
-    
-    <div class="ending-text">
-        它不是解释一个已经存在的世界，<br>
-        而是追问：<br>
-        如何在无限不确定的背景中，<br>
-        持续生成有限的确定性！
-    </div>
-    
-    <h2 class="block-title">核心观点：</h2>
-    <div class="text-block">
-        区分而后生成<br>      
-        差异先于同一<br>
-        关系先于对象<br>
-        感应而后持存<br>
-        世界是属性的<br>
-        识与结构合一<br>        
-    </div>    
-    
-    <h2 class="block-title">三大属性：</h2>
-    <div class="text-block">
-        破缺-平衡<br>      
-        分化-耦合<br>
-        代偿-存在<br>        
-    </div>
+        <p class="question-big">世界是如何成为世界的？</p>
 
-    <h2 class="block-title">三位一体：</h2>
-     <div class="text-block">
-        非有-非非有-有<br>      
-        所在-能者-相识<br>
-        持存-镶嵌-流变<br>        
-    </div>
-   
-    <h2 class="block-title">在线预览</h2>
-    <div class="preview-group">
-        <a href="book-cover.jpg" target="_blank" class="preview-card">
-            <div class="preview-link">📖 《生-成》封面</div>
-            <div class="preview-label">点击查看立体效果</div>
-        </a>
-        <a href="book_page/page01.html" target="_blank" class="preview-card">
-            <div class="preview-link">📖 《生-成》目录</div>
-            <div class="preview-label">点击查看全书目录</div>
-        </a>
-        <a href="book_page/page03.html" target="_blank" class="preview-card">
-            <div class="preview-link">📖 《生-成》参考书籍</div>
-            <div class="preview-label">点击查看书籍清单</div>
-        </a>
-        <a href="https://t.zsxq.com/7oHk7" target="_blank" class="preview-card">
-            <div class="preview-link">📖 《生-成》完整资料与互动平台</div>
-            <div class="preview-label">点击加入知识星球联系星主可索取</div>
-        </a> 
-    </div>
-    
-    <h2 class="block-title">衍生著作</h2>
-    <div class="preview-group">
-        <a href="https://t.zsxq.com/7oHk7" target="_blank" class="preview-card">
-            <div class="preview-link">📖 《思想是怎样生成的？》</div>
-            <div class="text-block">
-            第一部：思想是怎样生成的？<br>
-                  —— 印度卷<br>
-            第二部：思想是怎样生成的？<br>
-                  —— 西方哲学卷<br>
-            第三部：思想是怎样生成的？<br>
-                  —— 中国思想卷<br>
-            第四部：世界思想如何重新生成？<br>
-                  —— 从文明到人类<br>
-            第五部：中国自主原创思想何以可能？<br>
-                  —— 人类新思想的生成<br>
-            <div class="preview-label">点击加入知识星球联系星主可索取</div>
-        </a>
-    </div>
+        <div class="text-block">
+            我们习惯于研究已经存在的事物：<br>
+            物质、生命、精神、社会、AI...<br><br>
+            但更根本的问题是：<br>
+            它们，究竟如何从无到有？<br>
+        </div>
 
-    <h2 class="block-title">相关论文</h2>
-    <div class="preview-group">
-        <a href="book_page/page02.html" target="_blank" class="preview-card">
-            <div class="preview-link">📖 人大哲学预印本本平台</div>
-            <div class="preview-label">点击查看论文清单</div>
-        </a>
-        <a href="" target="_blank" class="preview-card">
-            <div class="preview-link">📖 philpapers.org</div>
+        <div class="text-block">
+            《生-成》从最元初、最简单的<span class="emphasis">「区分」</span>出发，<br>
+            探索时空、世界、意识、生命与文明的生成逻辑。<br>
+        </div>
 
-        </a>  
+        <div class="ending-text">
+            它不是解释一个已经存在的世界，<br>
+            而是追问：<br>
+            如何在无限不确定的背景中，<br>
+            持续生成有限的确定性！
+        </div>
+
+        <h2 class="block-title">核心观点：</h2>
+        <div class="text-block">
+            区分而后生成<br>
+            差异先于同一<br>
+            关系先于对象<br>
+            感应而后持存<br>
+            世界是属性的<br>
+            识与结构合一<br>
+        </div>
+
+        <h2 class="block-title">三大属性：</h2>
+        <div class="text-block">
+            破缺-平衡<br>
+            分化-耦合<br>
+            代偿-存在<br>
+        </div>
+
+        <h2 class="block-title">三位一体：</h2>
+        <div class="text-block">
+            非有-非非有-有<br>
+            所在-能者-相识<br>
+            持存-镶嵌-流变<br>
+        </div>
+
+        <h2 class="block-title">在线预览</h2>
+        <div class="preview-group">
+            <a href="book-cover.jpg" target="_blank" rel="noopener" class="preview-card">
+                <div class="preview-link">📖 《生-成》封面</div>
+                <div class="preview-label">点击查看立体效果</div>
+            </a>
+            <a href="book_page/page01.html" target="_blank" rel="noopener" class="preview-card">
+                <div class="preview-link">📖 《生-成》目录</div>
+                <div class="preview-label">点击查看全书目录</div>
+            </a>
+            <a href="book_page/page03.html" target="_blank" rel="noopener" class="preview-card">
+                <div class="preview-link">📖 《生-成》参考书籍</div>
+                <div class="preview-label">点击查看书籍清单</div>
+            </a>
+            <a href="https://t.zsxq.com/7oHk7" target="_blank" rel="noopener" class="preview-card">
+                <div class="preview-link">📖 《生-成》完整资料与互动平台</div>
+                <div class="preview-label">点击加入知识星球联系星主可索取</div>
+            </a>
+        </div>
+
+        <h2 class="block-title">衍生著作</h2>
+        <div class="preview-group">
+            <a href="https://t.zsxq.com/7oHk7" target="_blank" rel="noopener" class="preview-card wide">
+                <div class="preview-link">📖 《思想是怎样生成的？》</div>
+                <div class="book-list">
+                    第一部：思想是怎样生成的？<br>
+                    —— 印度卷<br>
+                    第二部：思想是怎样生成的？<br>
+                    —— 西方哲学卷<br>
+                    第三部：思想是怎样生成的？<br>
+                    —— 中国思想卷<br>
+                    第四部：世界思想如何重新生成？<br>
+                    —— 从文明到人类<br>
+                    第五部：中国自主原创思想何以可能？<br>
+                    —— 人类新思想的生成
+                </div>
+                <div class="preview-label">点击加入知识星球联系星主可索取</div>
+            </a>
+        </div>
+
+        <h2 class="block-title">相关论文</h2>
+        <div class="preview-group">
+            <a href="book_page/page02.html" target="_blank" rel="noopener" class="preview-card">
+                <div class="preview-link">📖 人大哲学预印本平台</div>
+                <div class="preview-label">点击查看论文清单</div>
+            </a>
+            <a href="https://philpapers.org/rec/MHIVTY" target="_blank" rel="noopener" class="preview-card">
+                <div class="preview-link">📖 philpapers.org</div>
+                <div class="preview-label">点击查看论文页面</div>
+            </a>
+        </div>
+
+        <footer>
+            <p><span class="footer-label">Philarchive：</span><a class="footer-link" href="https://philpapers.org/rec/MHIVTY" target="_blank" rel="noopener">philpapers.org/rec/MHIVTY</a></p>
+            <p><span class="footer-label">DOI：</span><a class="footer-link" href="https://doi.org/10.5281/zenodo.22699679" target="_blank" rel="noopener">doi.org/10.5281/zenodo.22699679</a></p>
+            <p><span class="footer-label">Github：</span><a class="footer-link" href="https://wudeshijie.being.net.cn" target="_blank" rel="noopener">wudeshijie.being.net.cn</a></p>
+            <p><span class="footer-label">国作登字：</span><a class="footer-link" href="https://register.ccopyright.com.cn/" target="_blank" rel="noopener">2026-A-00138904</a></p>
+            <p><span class="footer-label">邮箱：</span><a class="footer-link" href="mailto:tang@being.net.cn">tang@being.net.cn</a></p>
+        </footer>
     </div>
-    
-    <footer>
-        <p>Philarchive：philpapers.org/rec/MHIVTY</p>
-        <p>DOI: doi.org/10.5281/zenodo.22699679</p>
-        <p>Github：wudeshijie.being.net.cn</p>
-        <p>国作登字：2026-A-00138904</p>
-        <p>邮箱：tang@being.net.cn</p>
-    </footer>
-</div>
 </body>
 </html>
