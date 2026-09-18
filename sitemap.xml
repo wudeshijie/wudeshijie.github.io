@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>https://wudeshijie.being.net.cn/</loc>
+    <lastmod>2026-09-18</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <!-- ↓ 下面每行一个页面，把实际文件名替换进去 -->
+  <url>
+    <loc>https://wudeshijie.being.net.cn/book_page/page01.html</loc>
+    <lastmod>2026-09-18</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://wudeshijie.being.net.cn/book_page/page02.html</loc>
+    <lastmod>2026-09-18</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://wudeshijie.being.net.cn/book_page/page03.html</loc>
+    <lastmod>2026-09-18</lastmod>
+    <priority>0.6</priority>
+  </url>
+</urlset>
