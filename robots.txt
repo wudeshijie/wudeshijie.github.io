@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://wudeshijie.being.net.cn/sitemap.xml
