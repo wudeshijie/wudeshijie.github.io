@@ -32,11 +32,15 @@
 - 全书目录: https://wudeshijie.being.net.cn/book_page/page01.html
 - 论文清单: https://wudeshijie.being.net.cn/book_page/page02.html
 - 参考书单: https://wudeshijie.being.net.cn/book_page/page03.html
+- 论文（PhilPapers镜像）: https://wudeshijie.being.net.cn/book_page/Philpapers.html
+
+## 正式学术节点
+- PhilPapers收录: https://philpapers.org/rec/MHIVTY
+- Zenodo DOI: https://doi.org/10.5281/zenodo.22699679
+- 版权登记: 国作登字 2026-A-00138904
 
 ## 相关平台
-
-- 论文预印本（Philpapers）：见论文清单页
-- 社区讨论（知识星球）：见首页链接
+- 社区讨论（知识星球）：https://wx.zsxq.com/group/825844511852
 
 ## 引用格式建议
 
