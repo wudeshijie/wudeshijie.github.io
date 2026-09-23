@@ -147,6 +147,53 @@
             letter-spacing: 1px;
         }
 
+        /* ★ 新增：带右侧操作按钮的小标题（标题在左，购买在右） */
+        .block-title.has-action {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 14px;
+            flex-wrap: wrap;
+        }
+
+        /* ★ 新增：购买按钮 */
+        .buy-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            flex: none;
+            font-size: 0.85rem;
+            font-weight: 400;
+            letter-spacing: 1px;
+            line-height: 1;
+            color: #ffd76a;
+            text-decoration: none;
+            padding: 7px 16px;
+            border: 1px solid rgba(255, 205, 90, 0.45);
+            border-radius: 999px;
+            background: linear-gradient(135deg, rgba(255, 205, 90, 0.14), rgba(255, 190, 60, 0.04));
+            transition: all 0.3s ease;
+            white-space: nowrap;
+        }
+
+        .buy-link svg {
+            width: 14px;
+            height: 14px;
+            display: block;
+        }
+
+        .buy-link:hover {
+            color: #1a1206;
+            background: linear-gradient(135deg, #ffe9a8, #f0b942);
+            border-color: #ffd76a;
+            box-shadow: 0 0 18px rgba(255, 200, 80, 0.45);
+            transform: translateY(-1px);
+        }
+
+        .buy-link:active {
+            transform: translateY(0);
+        }
+
         /* 在线预览 / 衍生著作 / 相关论文 通用容器 */
         .preview-group {
             display: flex;
@@ -286,6 +333,17 @@
                 gap: 1.3rem;
             }
 
+            /* ★ 小屏下购买按钮缩小一点 */
+            .buy-link {
+                font-size: 0.78rem;
+                padding: 6px 12px;
+            }
+
+            .buy-link svg {
+                width: 13px;
+                height: 13px;
+            }
+
             footer {
                 font-size: 0.85rem;
             }
@@ -345,7 +403,20 @@
             持存-镶嵌-流变<br>
         </div>
 
-        <h2 class="block-title">在线预览</h2>
+        <!-- ★ 这里加入了右侧“购买”按钮 -->
+        <h2 class="block-title has-action">
+            <span>在线预览</span>
+            <a href="store.html" class="buy-link" title="前往购买《生-成》">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                     stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <circle cx="9" cy="21" r="1"></circle>
+                    <circle cx="20" cy="21" r="1"></circle>
+                    <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+                </svg>
+                购买
+            </a>
+        </h2>
+
         <div class="preview-group">
             <a href="book-cover.jpg" target="_blank" rel="noopener" class="preview-card">
                 <div class="preview-link">📖 《生-成》封面</div>
